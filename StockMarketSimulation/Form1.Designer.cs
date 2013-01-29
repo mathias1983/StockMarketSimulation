@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.panel1 = new System.Windows.Forms.Panel();
             this.plotRealDataButton = new System.Windows.Forms.Button();
             this.sinceDaysTextBox = new System.Windows.Forms.TextBox();
@@ -43,6 +43,7 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadStocksMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.realDataChart)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -50,6 +51,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.plotRealDataButton);
             this.panel1.Controls.Add(this.sinceDaysTextBox);
             this.panel1.Controls.Add(this.label3);
@@ -128,17 +130,17 @@
             // 
             // realDataChart
             // 
-            chartArea2.Name = "ChartArea1";
-            this.realDataChart.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.realDataChart.Legends.Add(legend2);
+            chartArea1.Name = "ChartArea1";
+            this.realDataChart.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.realDataChart.Legends.Add(legend1);
             this.realDataChart.Location = new System.Drawing.Point(13, 58);
             this.realDataChart.Name = "realDataChart";
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.realDataChart.Series.Add(series2);
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.realDataChart.Series.Add(series1);
             this.realDataChart.Size = new System.Drawing.Size(388, 375);
             this.realDataChart.TabIndex = 2;
             this.realDataChart.Text = "chart1";
@@ -165,9 +167,19 @@
             // loadStocksMenu
             // 
             this.loadStocksMenu.Name = "loadStocksMenu";
-            this.loadStocksMenu.Size = new System.Drawing.Size(152, 22);
+            this.loadStocksMenu.Size = new System.Drawing.Size(137, 22);
             this.loadStocksMenu.Text = "Load Stocks";
             this.loadStocksMenu.Click += new System.EventHandler(this.loadStocksMenu_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(274, 68);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(114, 40);
+            this.button1.TabIndex = 7;
+            this.button1.Text = "Start Agent";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Form1
             // 
@@ -206,6 +218,7 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem loadStocksMenu;
+        private System.Windows.Forms.Button button1;
     }
 }
 

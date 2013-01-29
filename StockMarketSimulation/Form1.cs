@@ -27,9 +27,9 @@ namespace StockMarketSimulation
 
             //create default values
             defaultValues = new defaultValues();
-            defaultValues.days = 100;
+            defaultValues.days = 1000;
             defaultValues.selectedStockNumber = 0;
-            defaultValues.numberOfStocks = 10;
+            defaultValues.numberOfStocks = 100;
 
 
             //create stock manager
@@ -113,6 +113,11 @@ namespace StockMarketSimulation
                 stockManager.loadRealDataStocks(dialog.NumOfStocks);
             }
             reloadComboBox();
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
 
         }
     }

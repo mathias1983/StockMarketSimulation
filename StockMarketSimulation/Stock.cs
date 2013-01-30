@@ -14,6 +14,10 @@ namespace StockMarketSimulation
         }
 
         private List<double> priceHistory;
+        public List<double> PriceHistory
+        {
+            get { return priceHistory; }
+        }
 
         private double currentPrice;
         public double CurrentPrice
@@ -44,9 +48,29 @@ namespace StockMarketSimulation
                 return null; //TODO: Exception
         }
 
+        public List<double> GetPricesFromTo(int fromDay, int toDay)
+        {
+            if (priceHistory.Count >= toDay - fromDay)
+                return priceHistory.GetRange(fromDay, toDay - fromDay);
+            else
+                return priceHistory;
+        }
+
         public void AddPrice(double price)
         {
             this.priceHistory.Add(price);
+        }
+
+        public void increasePriceHistory(int amount)
+        { 
+            int addition = amount - priceHistory.Count;
+            if (amount > 0)
+            {
+                for (int i = 0; i < amount; i++)
+                {
+                    AddPrice(0.0);
+                }
+            }
         }
     }
 }

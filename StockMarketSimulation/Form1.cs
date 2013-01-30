@@ -29,7 +29,7 @@ namespace StockMarketSimulation
             defaultValues = new defaultValues();
             defaultValues.days = 1000;
             defaultValues.selectedStockNumber = 0;
-            defaultValues.numberOfStocks = 100;
+            defaultValues.numberOfStocks = 5;
 
 
             //create stock manager
@@ -51,38 +51,42 @@ namespace StockMarketSimulation
         private void plotRealDataButton_Click(object sender, EventArgs e)
         {
             this.realDataChart.Series.Clear();
-            int days;
+            int fromDays, toDays;
             try
             {
-                days = Int32.Parse(this.sinceDaysTextBox.Text);
+                fromDays = Int32.Parse(this.fromDaysTextBox.Text);
+                toDays = Int32.Parse(this.toDaysTextBox.Text);
             }
             catch (Exception)
             {
-                days = defaultValues.days;
-                this.sinceDaysTextBox.Text = days.ToString();
+                fromDays = defaultValues.days;
+                toDays = defaultValues.days;
+                this.fromDaysTextBox.Text = fromDays.ToString();
+                this.toDaysTextBox.Text = toDays.ToString();
             }
             
             if (allStocksCheckBox.Checked)
             {
                 for (int i = 0; i < stockManager.RealDataStocks.Count; i++)
                 {
-                    this.realDataChart.Series.Add(createSerieForChart(i, days, getRandomColor()));
+                    this.realDataChart.Series.Add(createSerieForChart(i, fromDays, toDays, getRandomColor()));
                 }
             }
             else 
             {
                 int selectedStockNumber = this.stockNameComboBox.SelectedIndex >= 0 ? this.stockNameComboBox.SelectedIndex : defaultValues.selectedStockNumber;
-                this.realDataChart.Series.Add(createSerieForChart(selectedStockNumber, days, getRandomColor()));
+                this.realDataChart.Series.Add(createSerieForChart(selectedStockNumber, fromDays, toDays, getRandomColor()));
                 this.stockNameComboBox.SelectedIndex = selectedStockNumber;
             }
             this.realDataChart.ChartAreas[0].AxisX.Title = "Day";
             this.realDataChart.ChartAreas[0].AxisY.Title = "Stock Price";
         }
 
-        private Series createSerieForChart(int stockNumber, int days, Color color)
+        private Series createSerieForChart(int stockNumber, int fromDay, int toDay, Color color)
         {
             Stock stock = stockManager.RealDataStocks.ElementAt(stockNumber);
-            double[] prices = stock.GetPricesSince(days).ToArray();
+            //double[] prices = stock.GetPricesSince(days).ToArray();
+            double[] prices = stock.GetPricesFromTo(fromDay, toDay).ToArray();
             Series serie = new Series();
             serie.ChartType = SeriesChartType.FastLine;
             serie.Name = stock.Name;
@@ -116,9 +120,18 @@ namespace StockMarketSimulation
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void agentPreferencesMenu_Click(object sender, EventArgs e)
         {
-
+            AgentSettingsDialog dialog = new AgentSettingsDialog();
+            DialogResult result = dialog.ShowDialog();
+            
+            if (result == DialogResult.OK)
+            {
+                //TODO: set preferences to agents they are stored in dialog:
+                //dialog.NumberOfAgents
+                //dialog.MaxOrders
+                //etc.
+            }
         }
     }
 }

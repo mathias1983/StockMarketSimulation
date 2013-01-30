@@ -13,10 +13,10 @@ namespace StockMarketSimulation
         [STAThread]
         static void Main()
         {
-            ModelSwarm ms = new ModelSwarm();
-            //Application.EnableVisualStyles();
-            //Application.SetCompatibleTextRenderingDefault(false);
-            // Application.Run(new Form1());
+            //ModelSwarm ms = new ModelSwarm();
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new Form1());
             
         }
     }

@@ -24,5 +24,29 @@ namespace StockMarketSimulation
         public int localHistoryLength = 100;
         public float agentProbToAdoptStopLoss = 0.0F;
         public float maxLossRate = 0.05F;
+
+        public DefaultValues()
+        { }
+
+        public DefaultValues(int _agentNumber, int _maxOrderNumber, int _stopLossInterval, float _probOfImitatingTheMarket,
+                            float _probOfLocalImitation, float _asymmetricBuySellProb, float _agentProbToActBeforeOpening,
+                            float _minCorrectingCoefficient, float _maxCorrectingCoefficient, float _floorP, float _agentProbToActBelowFloorPrice,
+                            int _meanPriceHistoryLength, int _localHistoryLength, float _agentProbToAdoptStopLoss, float _maxLossRate)
+        {
+            agentNumber = _agentNumber;
+            maxOrderNumber = _maxOrderNumber;
+            stopLossInterval = _stopLossInterval;
+            probOfImitatingTheMarket = _probOfImitatingTheMarket;
+            asymmetricBuySellProb = _asymmetricBuySellProb;
+            agentProbToActBeforeOpening = _agentProbToActBeforeOpening;
+            minCorrectingCoefficient = _minCorrectingCoefficient;
+            maxCorrectingCoefficient = _maxCorrectingCoefficient;
+            floorP = _floorP;
+            agentProbToActBelowFloorPrice = _agentProbToActBelowFloorPrice;
+            meanPriceHistoryLength = _meanPriceHistoryLength;
+            localHistoryLength = _localHistoryLength;
+            agentProbToAdoptStopLoss = _agentProbToAdoptStopLoss;
+            maxLossRate = _maxLossRate;
+        }
     }
 }

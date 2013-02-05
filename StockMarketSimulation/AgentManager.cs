@@ -7,25 +7,25 @@ namespace StockMarketSimulation
 {
     public class AgentManager
     {
-        public StockPriceBook spb;
+        public StockPriceBook stockPriceBook;
         private List<Agent> AgentList;
 
         public AgentManager(List<Agent> agents) {
             this.AgentList = agents;
-            this.spb = new StockPriceBook();
+            this.stockPriceBook = new StockPriceBook();
         }
 
         public void act() 
         {
             foreach (Agent agent in AgentList)
             {
-                agent.act(this.spb);
+                agent.act(this.stockPriceBook);
             }
 
-            for (int i = 0; i < this.spb.getNumberOfOrders(); i++)
+            for (int i = 0; i < this.stockPriceBook.getNumberOfOrders(); i++)
             {
-                Console.WriteLine("Agent-Number # " + this.spb.getAllOrders().ElementAt(i).OrderAgentNumber);
-                Console.WriteLine(this.spb.getAllOrders().ElementAt(i).OrderAgentPriceOfOrder);
+                Console.WriteLine("Agent-Number # " + this.stockPriceBook.getAllOrders().ElementAt(i).OrderAgentNumber);
+                Console.WriteLine(this.stockPriceBook.getAllOrders().ElementAt(i).OrderAgentPriceOfOrder);
             }
         }
     }

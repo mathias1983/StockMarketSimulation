@@ -21,6 +21,7 @@ namespace StockMarketSimulation
     {
         private StockManager stockManager;
         private defaultValues defaultValues;
+        private DefaultValues agentValues;
         public Form1()
         {
             InitializeComponent();
@@ -128,10 +129,15 @@ namespace StockMarketSimulation
             if (result == DialogResult.OK)
             {
                 //TODO: set preferences to agents they are stored in dialog:
+                agentValues = new DefaultValues(dialog.NumberOfAgents, dialog.MaxOrders, dialog.StopLoss, (float) dialog.ProbOfImitatingMarket,
+                                                (float)dialog.ProbOfLocalImitation, (float) dialog.AsymmetricBuySellProb, (float)dialog.ProbBeforeOpening,
+                                                (float) dialog.MinCorrection, (float)dialog.MaxCorrection, (float)dialog.FloorPrice, (float)dialog.AgentProbActBelowFloorPrice, dialog.MeanPriceHistoryLength,
+                                                dialog.LocalHistoryLength, (float) dialog.AgentProbAdoptStopLoss, (float)dialog.MaxLossRate);
                 //dialog.NumberOfAgents
                 //dialog.MaxOrders
                 //etc.
             }
         }
+
     }
 }

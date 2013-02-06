@@ -11,6 +11,8 @@ namespace StockMarketSimulation
 {
     public partial class AgentSettingsDialog : Form
     {
+        public int EpochNumber
+        { get { return Int32.Parse(epochNumberTextbox.Text); } }
         public int NumberOfAgents
         { get{ return Int32.Parse(numberOfAgentsTextBox.Text); } }
         public int MaxOrders

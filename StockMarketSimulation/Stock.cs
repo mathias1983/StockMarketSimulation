@@ -5,7 +5,7 @@ using System.Text;
 
 namespace StockMarketSimulation
 {
-    class Stock
+    public class Stock
     {
         private string name;
         public string Name
@@ -59,6 +59,7 @@ namespace StockMarketSimulation
         public void AddPrice(double price)
         {
             this.priceHistory.Add(price);
+            currentPrice = price;
         }
 
         public void increasePriceHistory(int amount)

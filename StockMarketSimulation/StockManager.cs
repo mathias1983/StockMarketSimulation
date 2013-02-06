@@ -17,6 +17,7 @@ namespace StockMarketSimulation
         public List<Stock> SimulatedStocks
         {
             get { return simulatedStocks; }
+            set { simulatedStocks = value; }
         }
 
 

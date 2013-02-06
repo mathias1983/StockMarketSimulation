@@ -59,12 +59,14 @@
             this.agentProbAdoptStopLossTextbox = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.epochNumberTextbox = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(22, 23);
+            this.label1.Location = new System.Drawing.Point(22, 34);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(95, 13);
             this.label1.TabIndex = 0;
@@ -72,7 +74,7 @@
             // 
             // numberOfAgentsTextBox
             // 
-            this.numberOfAgentsTextBox.Location = new System.Drawing.Point(120, 20);
+            this.numberOfAgentsTextBox.Location = new System.Drawing.Point(120, 31);
             this.numberOfAgentsTextBox.Name = "numberOfAgentsTextBox";
             this.numberOfAgentsTextBox.Size = new System.Drawing.Size(50, 20);
             this.numberOfAgentsTextBox.TabIndex = 1;
@@ -80,7 +82,7 @@
             // 
             // maxOrdersTextBox
             // 
-            this.maxOrdersTextBox.Location = new System.Drawing.Point(120, 46);
+            this.maxOrdersTextBox.Location = new System.Drawing.Point(120, 57);
             this.maxOrdersTextBox.Name = "maxOrdersTextBox";
             this.maxOrdersTextBox.Size = new System.Drawing.Size(50, 20);
             this.maxOrdersTextBox.TabIndex = 3;
@@ -89,7 +91,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(22, 49);
+            this.label2.Location = new System.Drawing.Point(22, 60);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(64, 13);
             this.label2.TabIndex = 2;
@@ -97,7 +99,7 @@
             // 
             // stopLossTextBox
             // 
-            this.stopLossTextBox.Location = new System.Drawing.Point(120, 72);
+            this.stopLossTextBox.Location = new System.Drawing.Point(120, 83);
             this.stopLossTextBox.Name = "stopLossTextBox";
             this.stopLossTextBox.Size = new System.Drawing.Size(50, 20);
             this.stopLossTextBox.TabIndex = 5;
@@ -106,7 +108,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(19, 75);
+            this.label3.Location = new System.Drawing.Point(19, 86);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(95, 13);
             this.label3.TabIndex = 4;
@@ -326,11 +328,30 @@
             this.button1.Text = "OK";
             this.button1.UseVisualStyleBackColor = true;
             // 
+            // epochNumberTextbox
+            // 
+            this.epochNumberTextbox.Location = new System.Drawing.Point(120, 6);
+            this.epochNumberTextbox.Name = "epochNumberTextbox";
+            this.epochNumberTextbox.Size = new System.Drawing.Size(50, 20);
+            this.epochNumberTextbox.TabIndex = 32;
+            this.epochNumberTextbox.Text = "200";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(22, 9);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(78, 13);
+            this.label16.TabIndex = 31;
+            this.label16.Text = "Epoch Number";
+            // 
             // AgentSettingsDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(568, 273);
+            this.Controls.Add(this.epochNumberTextbox);
+            this.Controls.Add(this.label16);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.maxLossRateTextBox);
             this.Controls.Add(this.label14);
@@ -402,5 +423,7 @@
         private System.Windows.Forms.TextBox agentProbAdoptStopLossTextbox;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox epochNumberTextbox;
+        private System.Windows.Forms.Label label16;
     }
 }

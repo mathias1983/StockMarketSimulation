@@ -50,18 +50,18 @@ namespace StockMarketSimulation
             return this.number;
         }
 
-        public void act(StockPriceBook spb)
+        public void act(StockPriceBook stockPriceBook)
         {
             Order tempOrder = new Order();
 
-            float LastPrice = spb.getLastPrice();
+            float LastPrice = stockPriceBook.getLastPrice();
             bool bs = true;
             
             double buysellswitch = 0.5;
 
             if (this.probOfImitatingTheMarket > getRandomDouble())
             {
-                if (spb.getPrice(spb.getSize() - 1) > spb.getPrice(spb.getSize() - 2))
+                if (stockPriceBook.getPrice(stockPriceBook.getSize() - 1) > stockPriceBook.getPrice(stockPriceBook.getSize() - 2))
                 {
                     buysellswitch = this.asymmetricBuySellProb;
                 }
@@ -73,7 +73,6 @@ namespace StockMarketSimulation
 
             if (this.probOfLocalImitation > getRandomDouble())
             {
-
             }
 
             int choice = 1;
@@ -98,7 +97,7 @@ namespace StockMarketSimulation
             tempOrder.bs = bs;
             tempOrder.OrderAgentNumber = this.number;
 
-            spb.addOrder(tempOrder);
+            stockPriceBook.addOrder(tempOrder);
         }
 
         private double getRandomDouble()

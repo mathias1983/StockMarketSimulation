@@ -27,35 +27,20 @@ namespace StockMarketSimulation
 
         public double getMeanPrice(int range)
         {
+            if (StockMarketSimulation.simDay == 0)
+                return 1F;
+
             while (range > StockMarketSimulation.simDay)
             {
                 range--;
             }
 
-            float meanPrice = 0F;
+            double meanPrice = 0.0;
             for (int i = 0; i < StockMarketSimulation.simDay; i++)
             {
-                meanPrice += this.getEndOfDayPrice(StockMarketSimulation.simDay);
+                meanPrice += this.getEndofDayPrice(StockMarketSimulation.simDay-1);
             }
             return (meanPrice ==0)? 1F : meanPrice / range;
-        }
-
-        private float getEndOfDayPrice(int day)
-        {
-            if (day <= 0)
-                return 1F;
-
-            float dailyPrice = 0F;
-            int counter = 0;
-
-            for (int i = 0; i < this.Orders.ElementAt(day-1).Value.Count; i++)
-			{
-			    dailyPrice += this.Orders.ElementAt(day-1).Value.ElementAt(i).OrderAgentPriceOfOrder;
-                counter++;
-                
-			}
-
-            return (counter==0)? dailyPrice : dailyPrice / counter;
         }
 
         public void agentActBeforeOpening()
@@ -116,7 +101,8 @@ namespace StockMarketSimulation
             this.Orders.Add(StockMarketSimulation.simDay, dailyOrders);
         }
 
-        private void setEndOfDayPrice(double price)
+
+        public void setEndOfDayPrice(double price)
         {
             this.endOfDayPrices.Add(price);
         }
@@ -128,11 +114,6 @@ namespace StockMarketSimulation
 
             else 
                 return this.endOfDayPrices.ElementAt(day);
-        }
-        public int getNumberOfOrders()
-        {
-
-            return this.Orders.Count;
         }
     }
 }

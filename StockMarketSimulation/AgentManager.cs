@@ -25,6 +25,7 @@ namespace StockMarketSimulation
                     this.dailyOrders.Add(AgentList.ElementAt(j).act());
                 }
                 writeOrdersToStockPriceBook(this.dailyOrders);
+                
                 this.dailyOrders.Clear();
         }
 

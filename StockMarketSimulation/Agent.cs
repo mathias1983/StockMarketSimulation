@@ -25,6 +25,9 @@ namespace StockMarketSimulation
         public float agentProbToAdoptStopLoss;
         public float maxLossRate;
 
+        // Without static Random always the same result with nextdouble() 
+
+        private static Random random = new Random();
 
         public Agent(int number, DefaultValues df)
         {
@@ -50,18 +53,17 @@ namespace StockMarketSimulation
             return this.number;
         }
 
-        public void act(StockPriceBook stockPriceBook)
+        public Order act()
         {
             Order tempOrder = new Order();
 
-            float LastPrice = stockPriceBook.getLastPrice();
-            bool bs = true;
+            float LastPrice = StockMarketSimulation.stockPriceBook.getLastPrice();
             
             double buysellswitch = 0.5;
 
             if (this.probOfImitatingTheMarket > getRandomDouble())
             {
-                if (stockPriceBook.getPrice(stockPriceBook.getSize() - 1) > stockPriceBook.getPrice(stockPriceBook.getSize() - 2))
+                if (getPriceOfLastOrder() > getPriceOfBeforeLastOrder())
                 {
                     buysellswitch = this.asymmetricBuySellProb;
                 }
@@ -73,6 +75,7 @@ namespace StockMarketSimulation
 
             if (this.probOfLocalImitation > getRandomDouble())
             {
+
             }
 
             int choice = 1;
@@ -82,6 +85,7 @@ namespace StockMarketSimulation
                 choice = -1;
             }
 
+            if (LastPrice < 0) LastPrice *= -1;
             double price = LastPrice * getRandomDouble(this.minCorrectingCoefficient, this.maxCorrectingCoefficient);
 
             if (LastPrice < this.floorP)
@@ -94,25 +98,36 @@ namespace StockMarketSimulation
             }
 
             tempOrder.OrderAgentPriceOfOrder = (float)price * choice;
-            tempOrder.bs = bs;
             tempOrder.OrderAgentNumber = this.number;
 
-            stockPriceBook.addOrder(tempOrder);
+
+            StockMarketSimulation.stockPriceBook.setLastPrice((float)price * choice);
+
+            return tempOrder;
+        }
+
+        private double getPriceOfBeforeLastOrder()
+        {
+            return StockMarketSimulation.stockPriceBook.getEndofDayPrice(StockMarketSimulation.simDay-2);
+        }
+
+        private double getPriceOfLastOrder()
+        {
+
+            return StockMarketSimulation.stockPriceBook.getEndofDayPrice(StockMarketSimulation.simDay-1);
         }
 
         private double getRandomDouble()
         {
-            Random random = new Random();
+            double a = random.NextDouble();
 
-            return random.NextDouble();
+            return a;
         }
 
         private double getRandomDouble(float min, float max)
         {
-            Random random = new Random();
-
-            return min + random.NextDouble() * (max - min);
+            double a = random.NextDouble();
+            return min + a * (max - min);
         }
-
     }
 }

@@ -22,14 +22,15 @@ namespace StockMarketSimulation
         private StockManager stockManager;
         private defaultValues defaultValues;
         private DefaultValues agentValues;
-        private ModelSwarm modelSwarm;
+        private StockMarketSimulation sms;
+
         public Form1()
         {
             InitializeComponent();
 
             //create default values
             defaultValues = new defaultValues();
-            defaultValues.days = 1000;
+            defaultValues.days = 100;
             defaultValues.selectedStockNumber = 0;
             defaultValues.numberOfStocks = 5;
 
@@ -108,7 +109,7 @@ namespace StockMarketSimulation
 
         private Series createSerieForSimulatedDataChart(Stock stock)
         {
-            double[] prices = stock.GetPricesFromTo(0, 20).ToArray();
+            double[] prices = stock.GetPricesFromTo(0, 100).ToArray();
             Series serie = new Series();
             serie.ChartType = SeriesChartType.FastLine;
             serie.Name = stock.Name;
@@ -158,10 +159,10 @@ namespace StockMarketSimulation
 
         private void simulateBtn_Click(object sender, EventArgs e)
         {
-            modelSwarm = new ModelSwarm(agentValues);
-            modelSwarm.Start();
+            sms = new StockMarketSimulation(agentValues);
+            sms.Start();
             this.simulationChart.Series.Clear();
-            this.simulationChart.Series.Add(createSerieForSimulatedDataChart(modelSwarm.currentStock));
+            this.simulationChart.Series.Add(createSerieForSimulatedDataChart(sms.currentStock));
             this.simulationChart.ChartAreas[0].AxisX.Title = "Day";
             this.simulationChart.ChartAreas[0].AxisY.Title = "Stock Price";
         }

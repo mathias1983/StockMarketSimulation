@@ -7,26 +7,39 @@ namespace StockMarketSimulation
 {
     public class AgentManager
     {
-        public StockPriceBook stockPriceBook;
-        private List<Agent> AgentList;
+        private List<Agent> AgentList = new List<Agent>();
+        private List<Order> dailyOrders = new List<Order>();
+        private DefaultValues dv;
 
-        public AgentManager(List<Agent> agents) {
-            this.AgentList = agents;
-            this.stockPriceBook = new StockPriceBook();
+        public AgentManager(DefaultValues dv) {
+
+            this.dv = dv;
+            createAgents(dv);            
         }
 
-        public void act() 
+        public void letAgentsAct()
         {
-            foreach (Agent agent in AgentList)
+           
+                for (int j = 0; j < AgentList.Count; j++)
+                {
+                    this.dailyOrders.Add(AgentList.ElementAt(j).act());
+                }
+                writeOrdersToStockPriceBook(this.dailyOrders);
+                this.dailyOrders.Clear();
+        }
+
+        private void createAgents(DefaultValues dv)
+        {
+            for (int i = 0; i < dv.agentNumber; i++)
             {
-                agent.act(this.stockPriceBook);
+                AgentList.Add(new Agent(i, dv));
             }
 
-            //for (int i = 0; i < this.stockPriceBook.getNumberOfOrders(); i++)
-            //{
-            //    Console.WriteLine("Agent-Number # " + this.stockPriceBook.getAllOrders().ElementAt(i).OrderAgentNumber);
-            //    Console.WriteLine(this.stockPriceBook.getAllOrders().ElementAt(i).OrderAgentPriceOfOrder);
-            //}
+        }
+
+        private void writeOrdersToStockPriceBook(List<Order> dailyOrders)
+        {
+            StockMarketSimulation.stockPriceBook.addDailyOrders(dailyOrders);
         }
     }
 }

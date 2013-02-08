@@ -13,14 +13,14 @@ namespace StockMarketSimulation
         public int maxOrderNumber = 1;
         public int stopLossInterval = 1;
 
-        public float probOfImitatingTheMarket = 0.0F;
+        public float probOfImitatingTheMarket = 0.5F;
         public float probOfLocalImitation = 0.0F;
         public float asymmetricBuySellProb = 0.9F;
         public float agentProbToActBeforeOpening = 0.05F;
         public float minCorrectingCoefficient = 0.9F;
         public float maxCorrectingCoefficient = 1.1F;
-        public float floorP = 0.3F;
-        public float agentProbToActBelowFloorPrice = 0.5F;
+        public float floorP = 1F;
+        public float agentProbToActBelowFloorPrice = 0.9F;
 
         public int meanPriceHistoryLength = 100;
         public int localHistoryLength = 100;

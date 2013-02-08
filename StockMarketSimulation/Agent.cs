@@ -58,7 +58,7 @@ namespace StockMarketSimulation
             Order tempOrder = new Order();
 
             float LastPrice = StockMarketSimulation.stockPriceBook.getLastPrice();
-            
+
             double buysellswitch = 0.5;
 
             if (this.probOfImitatingTheMarket > getRandomDouble())
@@ -67,7 +67,7 @@ namespace StockMarketSimulation
                 {
                     buysellswitch = this.asymmetricBuySellProb;
                 }
-                else
+                if (getPriceOfLastOrder() < getPriceOfBeforeLastOrder())
                 {
                     buysellswitch = 1 - this.asymmetricBuySellProb;
                 }
@@ -97,6 +97,20 @@ namespace StockMarketSimulation
                 }
             }
 
+            int stopLossChoice = 0;
+            double stopLossMeanPrice = StockMarketSimulation.stockPriceBook.getMeanPrice(this.stopLossInterval);
+
+            if (LastPrice >= stopLossMeanPrice * (1 + this.maxLossRate))
+                stopLossChoice = 1;
+            if (LastPrice <= stopLossMeanPrice * (1 - this.maxLossRate))
+                stopLossChoice = -1;
+
+            if (this.agentProbToAdoptStopLoss > getRandomDouble())
+            {
+                price = LastPrice;
+                choice = stopLossChoice;
+            }
+
             tempOrder.OrderAgentPriceOfOrder = (float)price * choice;
             tempOrder.OrderAgentNumber = this.number;
 
@@ -108,13 +122,13 @@ namespace StockMarketSimulation
 
         private double getPriceOfBeforeLastOrder()
         {
-            return StockMarketSimulation.stockPriceBook.getEndofDayPrice(StockMarketSimulation.simDay-2);
+            return StockMarketSimulation.stockPriceBook.getEndofDayPrice(StockMarketSimulation.simDay - 2);
         }
 
         private double getPriceOfLastOrder()
         {
 
-            return StockMarketSimulation.stockPriceBook.getEndofDayPrice(StockMarketSimulation.simDay-1);
+            return StockMarketSimulation.stockPriceBook.getEndofDayPrice(StockMarketSimulation.simDay - 1);
         }
 
         private double getRandomDouble()

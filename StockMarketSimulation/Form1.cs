@@ -109,7 +109,7 @@ namespace StockMarketSimulation
 
         private Series createSerieForSimulatedDataChart(Stock stock)
         {
-            double[] prices = stock.GetPricesFromTo(0, 100).ToArray();
+            double[] prices = stock.GetPricesFromTo(0, 500).ToArray();
             Series serie = new Series();
             serie.ChartType = SeriesChartType.FastLine;
             serie.Name = stock.Name;

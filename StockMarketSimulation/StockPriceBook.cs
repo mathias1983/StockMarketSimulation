@@ -17,45 +17,45 @@ namespace StockMarketSimulation
     {
         private Dictionary<int, List<Order>> Orders = new Dictionary<int, List<Order>>();
         
-        private float lastPrice = 0F;
+        private float lastPrice;
         private List<double> endOfDayPrices = new List<double>();
-        public static int day = 0;
-
+        
         public StockPriceBook()
         {
 
         }
 
-        public float getMeanPrice(int range)
+        public double getMeanPrice(int range)
         {
-            while (range >= this.Orders.Count)
+            while (range > StockMarketSimulation.simDay)
             {
                 range--;
             }
 
             float meanPrice = 0F;
-            for (int i = Orders.Count; i < Orders.Count - range; i--)
+            for (int i = 0; i < StockMarketSimulation.simDay; i++)
             {
-                meanPrice += this.getEndOfDayPrice(i);
+                meanPrice += this.getEndOfDayPrice(StockMarketSimulation.simDay);
             }
-            return meanPrice / range;
+            return (meanPrice ==0)? 1F : meanPrice / range;
         }
 
         private float getEndOfDayPrice(int day)
         {
+            if (day <= 0)
+                return 1F;
+
             float dailyPrice = 0F;
             int counter = 0;
 
-            foreach (var Order in this.Orders[day])
-            {
-                if (Order.simulationDay == day)
-                {
-                    dailyPrice += Order.OrderAgentPriceOfOrder;
-                    counter++;
-                }
-            }
+            for (int i = 0; i < this.Orders.ElementAt(day-1).Value.Count; i++)
+			{
+			    dailyPrice += this.Orders.ElementAt(day-1).Value.ElementAt(i).OrderAgentPriceOfOrder;
+                counter++;
+                
+			}
 
-            return dailyPrice / counter;
+            return (counter==0)? dailyPrice : dailyPrice / counter;
         }
 
         public void agentActBeforeOpening()
@@ -70,10 +70,10 @@ namespace StockMarketSimulation
 
         public float getLastPrice()
         {
-            if (Orders.Count == 0)
+            if (this.lastPrice == 0)
                 return 1F;
-            else
-                return lastPrice;
+
+            return this.lastPrice;
         }
 
         public float getLastMeanPrice(int range)

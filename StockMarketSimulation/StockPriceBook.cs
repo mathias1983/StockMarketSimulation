@@ -16,10 +16,10 @@ namespace StockMarketSimulation
     public class StockPriceBook
     {
         private Dictionary<int, List<Order>> Orders = new Dictionary<int, List<Order>>();
-        
+
         private float lastPrice;
         private List<double> endOfDayPrices = new List<double>();
-        
+
         public StockPriceBook()
         {
 
@@ -38,15 +38,12 @@ namespace StockMarketSimulation
             double meanPrice = 0.0;
             for (int i = 0; i < StockMarketSimulation.simDay; i++)
             {
-                meanPrice += this.getEndofDayPrice(StockMarketSimulation.simDay-1);
+                meanPrice += this.getEndofDayPrice(StockMarketSimulation.simDay - 1);
             }
-            return (meanPrice ==0)? 1F : meanPrice / range;
+            return (meanPrice == 0) ? 1F : meanPrice / range;
         }
 
-        public void agentActBeforeOpening()
-        {
-
-        }
+        // set the last executed price
 
         public void setLastPrice(float lastPrice)
         {
@@ -61,9 +58,11 @@ namespace StockMarketSimulation
             return this.lastPrice;
         }
 
+        // get the mean price of a day out of a specific range of days
+
         public float getLastMeanPrice(int range)
         {
-            if (range > this.Orders.Count-1)
+            if (range > this.Orders.Count - 1)
                 return 1F;
 
             float LastMeanPrice = 1.0F;
@@ -78,26 +77,16 @@ namespace StockMarketSimulation
             return LastMeanPrice;
         }
 
-        public float getPrice(int a)
-        {
-            if (Orders.Count > a && a >= 0)
-                return this.Orders[StockMarketSimulation.simDay].ElementAt(this.Orders[StockMarketSimulation.simDay].Count).OrderAgentPriceOfOrder;
-            else
-                return 1F;
-
-        }
-
         public void addDailyOrders(List<Order> dailyOrders)
         {
             double endOfDayPrice = 0.0;
 
             for (int i = 0; i < dailyOrders.Count; i++)
             {
-                endOfDayPrice += dailyOrders.ElementAt(i).OrderAgentPriceOfOrder;
+                endOfDayPrice += (dailyOrders.ElementAt(i).OrderAgentPriceOfOrder <= 0) ? dailyOrders.ElementAt(i).OrderAgentPriceOfOrder * -1 : dailyOrders.ElementAt(i).OrderAgentPriceOfOrder;
             }
 
-            setEndOfDayPrice(endOfDayPrice);
-
+            setEndOfDayPrice(endOfDayPrice/dailyOrders.Count);
             this.Orders.Add(StockMarketSimulation.simDay, dailyOrders);
         }
 
@@ -112,8 +101,30 @@ namespace StockMarketSimulation
             if (this.endOfDayPrices.Count == 0 || day < 0)
                 return 1;
 
-            else 
+            else
                 return this.endOfDayPrices.ElementAt(day);
+        }
+
+        public double getLocalHistory(int range)
+        {
+            List<Order> dailyOrders = new List<Order>();
+            dailyOrders = this.Orders.ElementAt(StockMarketSimulation.simDay).Value;
+
+            while (range > dailyOrders.Count)
+            {
+                range--;
+            }
+
+            double price = 0;
+            
+            for (int i = 0; i < range; i--)
+            {
+                price += dailyOrders.ElementAt(range-i).OrderAgentPriceOfOrder;
+            }
+
+            Console.WriteLine(price / range);
+
+            return price/range;
         }
     }
 }

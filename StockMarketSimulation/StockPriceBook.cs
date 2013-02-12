@@ -36,9 +36,9 @@ namespace StockMarketSimulation
             }
 
             double meanPrice = 0.0;
-            for (int i = 0; i < StockMarketSimulation.simDay; i++)
+            for (int i = 0; i < range; i++)
             {
-                meanPrice += this.getEndofDayPrice(StockMarketSimulation.simDay - 1);
+                meanPrice += this.getEndofDayPrice(StockMarketSimulation.simDay - 1 - i);
             }
             return (meanPrice == 0) ? 1F : meanPrice / range;
         }
@@ -105,26 +105,31 @@ namespace StockMarketSimulation
                 return this.endOfDayPrices.ElementAt(day);
         }
 
-        public double getLocalHistory(int range)
+        public int getLocalHistory(int range)
         {
             List<Order> dailyOrders = new List<Order>();
-            dailyOrders = this.Orders.ElementAt(StockMarketSimulation.simDay).Value;
+
+            if (this.Orders.Count <= 0)
+                return 1;
+            else 
+                dailyOrders = this.Orders.ElementAt(StockMarketSimulation.simDay-1).Value;
 
             while (range > dailyOrders.Count)
             {
                 range--;
             }
-
-            double price = 0;
             
-            for (int i = 0; i < range; i--)
+            int decision = 0;
+            
+            for (int i = 1; i < range; i++)
             {
-                price += dailyOrders.ElementAt(range-i).OrderAgentPriceOfOrder;
+                if (dailyOrders.ElementAt(range - i).OrderAgentPriceOfOrder <= 0)
+                    decision--;
+                else
+                    decision++;
             }
 
-            Console.WriteLine(price / range);
-
-            return price/range;
+            return decision;
         }
     }
 }

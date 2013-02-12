@@ -29,7 +29,7 @@ namespace StockMarketSimulation
 
         public void Start()
         {
-            currentStock = new Stock("10");
+            currentStock = new Stock("SuperStock");
             AgentManager am = new AgentManager(defaultValues);
             for (int i = 0; i < this.defaultValues.stopAtEpochNumber; i++)
             {

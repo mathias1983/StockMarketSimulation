@@ -7,11 +7,11 @@ namespace StockMarketSimulation
 {
     public class DefaultValues
     {
-        public int stopAtEpochNumber = 200;
+        public int stopAtEpochNumber = 2000;
 
         public int agentNumber = 100;
         public int maxOrderNumber = 1;
-        public int stopLossInterval = 0;
+        public int stopLossInterval = 10;
 
         public float probOfImitatingTheMarket = 0.0F;
         public float probOfLocalImitation = 0.0F;
@@ -19,13 +19,13 @@ namespace StockMarketSimulation
         public float agentProbToActBeforeOpening = 0.05F;
         public float minCorrectingCoefficient = 0.9F;
         public float maxCorrectingCoefficient = 1.1F;
-        public float floorP = 0.3F;
-        public float agentProbToActBelowFloorPrice = 0.5F;
+        public float floorP = 3F;
+        public float agentProbToActBelowFloorPrice = 0.0F;
 
         public int meanPriceHistoryLength = 100;
         public int localHistoryLength = 20;
         public float agentProbToAdoptStopLoss = 0.0F;
-        public float maxLossRate = 0.05F;
+        public float maxLossRate = 0.0F;
 
         public DefaultValues()
         { }

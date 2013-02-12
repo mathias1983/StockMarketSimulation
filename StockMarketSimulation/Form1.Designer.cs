@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
             this.toDaysTextBox = new System.Windows.Forms.TextBox();
@@ -170,18 +170,18 @@
             // 
             // realDataChart
             // 
-            chartArea3.Name = "ChartArea1";
-            this.realDataChart.ChartAreas.Add(chartArea3);
-            legend3.Name = "Legend1";
-            this.realDataChart.Legends.Add(legend3);
+            chartArea1.Name = "ChartArea1";
+            this.realDataChart.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.realDataChart.Legends.Add(legend1);
             this.realDataChart.Location = new System.Drawing.Point(13, 58);
             this.realDataChart.Name = "realDataChart";
             this.realDataChart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
-            series3.ChartArea = "ChartArea1";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series3.Legend = "Legend1";
-            series3.Name = "Series1";
-            this.realDataChart.Series.Add(series3);
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.realDataChart.Series.Add(series1);
             this.realDataChart.Size = new System.Drawing.Size(388, 375);
             this.realDataChart.TabIndex = 2;
             this.realDataChart.Text = "chart1";
@@ -194,7 +194,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.menuStrip1.Size = new System.Drawing.Size(784, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1061, 24);
             this.menuStrip1.TabIndex = 3;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -203,13 +203,13 @@
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.loadStocksMenu});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
             this.fileToolStripMenuItem.Text = "Stocks";
             // 
             // loadStocksMenu
             // 
             this.loadStocksMenu.Name = "loadStocksMenu";
-            this.loadStocksMenu.Size = new System.Drawing.Size(131, 22);
+            this.loadStocksMenu.Size = new System.Drawing.Size(137, 22);
             this.loadStocksMenu.Text = "Load Stocks";
             this.loadStocksMenu.Click += new System.EventHandler(this.loadStocksMenu_Click);
             // 
@@ -218,32 +218,32 @@
             this.agentsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.agentPreferencesMenu});
             this.agentsToolStripMenuItem.Name = "agentsToolStripMenuItem";
-            this.agentsToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
+            this.agentsToolStripMenuItem.Size = new System.Drawing.Size(56, 20);
             this.agentsToolStripMenuItem.Text = "Agents";
             // 
             // agentPreferencesMenu
             // 
             this.agentPreferencesMenu.Name = "agentPreferencesMenu";
-            this.agentPreferencesMenu.Size = new System.Drawing.Size(132, 22);
+            this.agentPreferencesMenu.Size = new System.Drawing.Size(152, 22);
             this.agentPreferencesMenu.Text = "Preferences";
             this.agentPreferencesMenu.Click += new System.EventHandler(this.agentPreferencesMenu_Click);
             // 
             // simulationChart
             // 
-            chartArea4.Name = "ChartArea1";
-            this.simulationChart.ChartAreas.Add(chartArea4);
-            legend4.Name = "Legend1";
-            this.simulationChart.Legends.Add(legend4);
+            chartArea2.Name = "ChartArea1";
+            this.simulationChart.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.simulationChart.Legends.Add(legend2);
             this.simulationChart.Location = new System.Drawing.Point(418, 58);
             this.simulationChart.Name = "simulationChart";
-            series4.ChartArea = "ChartArea1";
-            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series4.Legend = "Legend1";
-            series4.Name = "Series1";
-            this.simulationChart.Series.Add(series4);
-            this.simulationChart.Size = new System.Drawing.Size(354, 375);
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series2.Legend = "Legend1";
+            series2.Name = "Stock";
+            this.simulationChart.Series.Add(series2);
+            this.simulationChart.Size = new System.Drawing.Size(631, 375);
             this.simulationChart.TabIndex = 4;
-            this.simulationChart.Text = "chart1";
+            this.simulationChart.Text = "Terna-Simulation";
             // 
             // label5
             // 
@@ -259,7 +259,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(784, 562);
+            this.ClientSize = new System.Drawing.Size(1061, 562);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.simulationChart);
             this.Controls.Add(this.realDataChart);

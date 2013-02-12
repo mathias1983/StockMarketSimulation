@@ -109,7 +109,7 @@ namespace StockMarketSimulation
 
         private Series createSerieForSimulatedDataChart(Stock stock)
         {
-            double[] prices = stock.GetPricesFromTo(0, 200).ToArray();
+            double[] prices = stock.GetPricesFromTo(0, 2000).ToArray();
             Series serie = new Series();
             serie.ChartType = SeriesChartType.FastLine;
             serie.Name = stock.Name;
@@ -162,6 +162,7 @@ namespace StockMarketSimulation
             sms = new StockMarketSimulation(agentValues);
             sms.Start();
             this.simulationChart.Series.Clear();
+            this.simulationChart.ResetAutoValues();
             this.simulationChart.Series.Add(createSerieForSimulatedDataChart(sms.currentStock));
             this.simulationChart.ChartAreas[0].AxisX.Title = "Day";
             this.simulationChart.ChartAreas[0].AxisY.Title = "Stock Price";

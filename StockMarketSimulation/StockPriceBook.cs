@@ -43,21 +43,6 @@ namespace StockMarketSimulation
             return (meanPrice == 0) ? 1F : meanPrice / range;
         }
 
-        // set the last executed price
-
-        public void setLastPrice(float lastPrice)
-        {
-            this.lastPrice = lastPrice;
-        }
-
-        public float getLastPrice()
-        {
-            if (this.lastPrice == 0)
-                return 1F;
-
-            return this.lastPrice;
-        }
-
         // get the mean price of a day out of a specific range of days
 
         public float getLastMeanPrice(int range)
@@ -110,7 +95,7 @@ namespace StockMarketSimulation
             List<Order> dailyOrders = new List<Order>();
 
             if (this.Orders.Count <= 0)
-                return 1;
+                return 0;
             else 
                 dailyOrders = this.Orders.ElementAt(StockMarketSimulation.simDay-1).Value;
 

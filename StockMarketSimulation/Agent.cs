@@ -58,7 +58,6 @@ namespace StockMarketSimulation
             Order tempOrder = new Order();
 
             double LastPrice = StockMarketSimulation.stockPriceBook.getEndofDayPrice(StockMarketSimulation.simDay - 1);
-            //double LastPrice = StockMarketSimulation.stockPriceBook.getLastPrice();
 
             double buysellswitch = 0.5;
 
@@ -66,13 +65,14 @@ namespace StockMarketSimulation
             {
                 if (getMeanPriceOfTwoDaysBefore() < getMeanPriceOfDayBefore())
                 {
-                    buysellswitch = this.asymmetricBuySellProb;
+                    buysellswitch = 1 - this.asymmetricBuySellProb;
                 }
                 if (getMeanPriceOfTwoDaysBefore() > getMeanPriceOfDayBefore())
                 {
-                    buysellswitch = 1 - this.asymmetricBuySellProb;
+                    buysellswitch = this.asymmetricBuySellProb;
                 }
             }
+
 
             int choice = 1;
 
@@ -107,7 +107,7 @@ namespace StockMarketSimulation
                 }
             }
 
-            int stopLossChoice = 1;
+            int stopLossChoice = 0;
             double stopLossMeanPrice = StockMarketSimulation.stockPriceBook.getMeanPrice(this.stopLossInterval);
 
             if (LastPrice >= stopLossMeanPrice * (1 + this.maxLossRate))
@@ -115,18 +115,18 @@ namespace StockMarketSimulation
             if (LastPrice <= stopLossMeanPrice * (1 - this.maxLossRate))
                 stopLossChoice = -1;
 
-            if (this.agentProbToAdoptStopLoss > getRandomDouble())
+            if (stopLossChoice != 0)
             {
-                price = LastPrice;
-                choice = stopLossChoice;
+                if (this.agentProbToAdoptStopLoss > getRandomDouble())
+                {
+                    price = LastPrice;
+                    choice = stopLossChoice;
+                }
             }
 
             tempOrder.OrderAgentPriceOfOrder = (float)price * choice;
             tempOrder.OrderAgentNumber = this.number;
             tempOrder.simulationDay = StockMarketSimulation.simDay;
-
-
-            StockMarketSimulation.stockPriceBook.setLastPrice((float)price * choice);
 
             return tempOrder;
         }

@@ -9,9 +9,9 @@ namespace StockMarketSimulation
     {
         public int stopAtEpochNumber = 2000;
 
-        public int agentNumber = 100;
+        public int agentNumber = 200;
         public int maxOrderNumber = 1;
-        public int stopLossInterval = 10;
+        public int stopLossInterval = 100;
 
         public float probOfImitatingTheMarket = 0.0F;
         public float probOfLocalImitation = 0.0F;
@@ -24,7 +24,7 @@ namespace StockMarketSimulation
 
         public int meanPriceHistoryLength = 100;
         public int localHistoryLength = 20;
-        public float agentProbToAdoptStopLoss = 0.0F;
+        public float agentProbToAdoptStopLoss = 0.5F;
         public float maxLossRate = 0.0F;
 
         public DefaultValues()

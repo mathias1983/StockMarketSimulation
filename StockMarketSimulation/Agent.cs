@@ -10,6 +10,7 @@ namespace StockMarketSimulation
         public int number;
         public int maxOrderNumber;
         public int stopLossInterval;
+        public bool actedBeforeOpening;
 
         public float probOfImitatingTheMarket;
         public float probOfLocalImitation;
@@ -55,7 +56,17 @@ namespace StockMarketSimulation
 
         public Order act()
         {
+
             Order tempOrder = new Order();
+            
+            //if agent has acted before opening
+            //return 0 price order that is ignored in the stockpricebook
+            if (actedBeforeOpening)
+            {
+                tempOrder.OrderAgentPriceOfOrder = 0;
+                return tempOrder;
+            }
+
 
             double LastPrice = StockMarketSimulation.stockPriceBook.getEndofDayPrice(StockMarketSimulation.simDay - 1);
 
@@ -65,11 +76,11 @@ namespace StockMarketSimulation
             {
                 if (getMeanPriceOfTwoDaysBefore() < getMeanPriceOfDayBefore())
                 {
-                    buysellswitch = 1 - this.asymmetricBuySellProb;
+                    buysellswitch = this.asymmetricBuySellProb;
                 }
                 if (getMeanPriceOfTwoDaysBefore() > getMeanPriceOfDayBefore())
                 {
-                    buysellswitch = this.asymmetricBuySellProb;
+                    buysellswitch = 1 - this.asymmetricBuySellProb;
                 }
             }
 
@@ -81,13 +92,12 @@ namespace StockMarketSimulation
                 int tempDecision = getDecisionsOfLastAgents(this.localHistoryLength);
                 if (tempDecision > 0)
                 {
-                    buysellswitch = this.asymmetricBuySellProb;
+                    buysellswitch = 1 - this.asymmetricBuySellProb;
                 }
                 if (tempDecision < 0)
                 {
-                    buysellswitch = 1 - this.asymmetricBuySellProb;
+                    buysellswitch = this.asymmetricBuySellProb;
                 }
-
 
             }
 
@@ -123,6 +133,83 @@ namespace StockMarketSimulation
                     choice = stopLossChoice;
                 }
             }
+
+            tempOrder.OrderAgentPriceOfOrder = (float)price * choice;
+            tempOrder.OrderAgentNumber = this.number;
+            tempOrder.simulationDay = StockMarketSimulation.simDay;
+
+            return tempOrder;
+        }
+
+        public Order actBeforeOpening()
+        {
+            actedBeforeOpening = false;
+
+            Order tempOrder = new Order();
+            double LastPrice = StockMarketSimulation.stockPriceBook.getEndofDayPrice(StockMarketSimulation.simDay - 1);
+            double buysellswitch = 0.5;
+            if (this.probOfImitatingTheMarket > getRandomDouble())
+            {
+                if (getMeanPriceOfTwoDaysBefore() < getMeanPriceOfDayBefore())
+                {
+                    buysellswitch = 1 - this.asymmetricBuySellProb;
+                }
+                if (getMeanPriceOfTwoDaysBefore() > getMeanPriceOfDayBefore())
+                {
+                    buysellswitch = this.asymmetricBuySellProb;
+                }
+            }
+
+            int choice = 1;
+
+            if (this.probOfLocalImitation > getRandomDouble())
+            {
+                int tempDecision = getDecisionsOfLastAgents(this.localHistoryLength);
+                if (tempDecision > 0)
+                {
+                    buysellswitch = this.asymmetricBuySellProb;
+                }
+                if (tempDecision < 0)
+                {
+                    buysellswitch = 1 - this.asymmetricBuySellProb;
+                }
+
+            }
+            //until here it is set
+            if (buysellswitch < getRandomDouble())
+            {
+                choice = -1;
+            }
+
+            double price = LastPrice * getRandomDouble(this.minCorrectingCoefficient, this.maxCorrectingCoefficient);
+
+            if (LastPrice < this.floorP)
+            {
+                if (this.agentProbToActBelowFloorPrice > getRandomDouble())
+                {
+                    price = LastPrice;
+                    choice = 1;
+                }
+            }
+
+            int stopLossChoice = 0;
+            double stopLossMeanPrice = StockMarketSimulation.stockPriceBook.getMeanPrice(this.stopLossInterval);
+
+            if (LastPrice >= stopLossMeanPrice * (1 + this.maxLossRate))
+                stopLossChoice = 1;
+            if (LastPrice <= stopLossMeanPrice * (1 - this.maxLossRate))
+                stopLossChoice = -1;
+
+            if (stopLossChoice != 0)
+            {
+                if (this.agentProbToAdoptStopLoss > getRandomDouble())
+                {
+                    price = LastPrice;
+                    choice = stopLossChoice;
+                }
+            }
+
+            if (price != 0) actedBeforeOpening = true;
 
             tempOrder.OrderAgentPriceOfOrder = (float)price * choice;
             tempOrder.OrderAgentNumber = this.number;

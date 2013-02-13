@@ -22,7 +22,11 @@ namespace StockMarketSimulation
            
                 for (int j = 0; j < AgentList.Count; j++)
                 {
-                    this.dailyOrders.Add(AgentList.ElementAt(j).act());
+                    Order orderBeforeOpening = AgentList.ElementAt(j).actBeforeOpening();
+                    Order orderAtMarket = AgentList.ElementAt(j).act();
+                    if (orderBeforeOpening.OrderAgentPriceOfOrder != 0) this.dailyOrders.Add(orderBeforeOpening);
+                    if (orderAtMarket.OrderAgentPriceOfOrder != 0) this.dailyOrders.Add(orderAtMarket);
+                    
                 }
                 writeOrdersToStockPriceBook(this.dailyOrders);
                 

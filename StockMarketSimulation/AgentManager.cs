@@ -7,7 +7,7 @@ namespace StockMarketSimulation
 {
     public class AgentManager
     {
-        private List<Agent> AgentList = new List<Agent>();
+        public List<Agent> AgentList = new List<Agent>();
         private List<Order> dailyOrders = new List<Order>();
         private DefaultValues dv;
 
@@ -23,8 +23,8 @@ namespace StockMarketSimulation
             {
                 for (int j = 0; j < AgentList.Count; j++)
                 {
-                    Order orderBeforeOpening = AgentList.ElementAt(j).actBeforeOpening();
-                    Order orderAtMarket = AgentList.ElementAt(j).act();
+                    Order orderBeforeOpening = AgentList.ElementAt(j).actBeforeOpening(currentStock);
+                    Order orderAtMarket = AgentList.ElementAt(j).act(currentStock);
                     if (orderBeforeOpening.OrderAgentPriceOfOrder != 0 && orderBeforeOpening.OrderAgentSizeOrder > 0) this.dailyOrders.Add(orderBeforeOpening);
                     if (orderAtMarket.OrderAgentPriceOfOrder != 0 && orderBeforeOpening.OrderAgentSizeOrder > 0) this.dailyOrders.Add(orderAtMarket);
 

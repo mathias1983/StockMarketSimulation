@@ -171,5 +171,13 @@ namespace StockMarketSimulation
             this.simulationChart.ChartAreas[0].AxisY.Title = "Stock Price";
         }
 
+        private void buySellHistoryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (sms == null || sms.am == null) return;
+
+            BuySellHistory buySellHistory = new BuySellHistory(sms.allStocks, sms.am.AgentList);
+            buySellHistory.ShowDialog();
+        }
+
     }
 }

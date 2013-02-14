@@ -49,8 +49,7 @@ namespace StockMarketSimulation
             this.localHistoryLength = df.localHistoryLength;
             this.agentProbToAdoptStopLoss = df.agentProbToAdoptStopLoss;
             this.maxLossRate = df.maxLossRate;
-
-            this.budget = 100;
+            this.budget = df.budget;
 
         }
         public int getAgentNumber()
@@ -58,7 +57,7 @@ namespace StockMarketSimulation
             return this.number;
         }
 
-        public Order act()
+        public Order act(Stock currentStock)
         {
 
             Order tempOrder = new Order();
@@ -72,17 +71,17 @@ namespace StockMarketSimulation
             }
 
 
-            double LastPrice = StockMarketSimulation.stockPriceBook.getEndofDayPrice(StockMarketSimulation.simDay - 1);
+            double LastPrice = currentStock.stockPriceBook.getEndofDayPrice(StockMarketSimulation.simDay - 1);
 
             double buysellswitch = 0.5;
 
             if (this.probOfImitatingTheMarket > getRandomDouble())
             {
-                if (getMeanPriceOfTwoDaysBefore() < getMeanPriceOfDayBefore())
+                if (getMeanPriceOfTwoDaysBefore(currentStock) < getMeanPriceOfDayBefore(currentStock))
                 {
                     buysellswitch = this.asymmetricBuySellProb;
                 }
-                if (getMeanPriceOfTwoDaysBefore() > getMeanPriceOfDayBefore())
+                if (getMeanPriceOfTwoDaysBefore(currentStock) > getMeanPriceOfDayBefore(currentStock))
                 {
                     buysellswitch = 1 - this.asymmetricBuySellProb;
                 }
@@ -93,7 +92,7 @@ namespace StockMarketSimulation
 
             if (this.probOfLocalImitation > getRandomDouble())
             {
-                int tempDecision = getDecisionsOfLastAgents(this.localHistoryLength);
+                int tempDecision = getDecisionsOfLastAgents(this.localHistoryLength, currentStock);
                 if (tempDecision > 0)
                 {
                     buysellswitch = 1 - this.asymmetricBuySellProb;
@@ -122,7 +121,7 @@ namespace StockMarketSimulation
             }
 
             int stopLossChoice = 0;
-            double stopLossMeanPrice = StockMarketSimulation.stockPriceBook.getMeanPrice(this.stopLossInterval);
+            double stopLossMeanPrice = currentStock.stockPriceBook.getMeanPrice(this.stopLossInterval);
 
             if (LastPrice >= stopLossMeanPrice * (1 + this.maxLossRate))
                 stopLossChoice = 1;
@@ -148,25 +147,25 @@ namespace StockMarketSimulation
                 tempOrder.OrderAgentSizeOrder--;
             }
 
-            this.budget += tempOrder.OrderAgentSizeOrder * tempOrder.OrderAgentPriceOfOrder;
-            //if(StockMarketSimulation.simDay > 198) Console.WriteLine("Agent {0:D} has budget {1:F}", this.getAgentNumber(), this.budget);
+            this.budget -= tempOrder.OrderAgentSizeOrder * tempOrder.OrderAgentPriceOfOrder;
+            if(StockMarketSimulation.simDay > 198) Console.WriteLine("Agent {0:D} has budget {1:F}", this.getAgentNumber(), this.budget);
             return tempOrder;
         }
 
-        public Order actBeforeOpening()
+        public Order actBeforeOpening(Stock currentStock)
         {
             actedBeforeOpening = false;
 
             Order tempOrder = new Order();
-            double LastPrice = StockMarketSimulation.stockPriceBook.getEndofDayPrice(StockMarketSimulation.simDay - 1);
+            double LastPrice = currentStock.stockPriceBook.getEndofDayPrice(StockMarketSimulation.simDay - 1);
             double buysellswitch = 0.5;
             if (this.probOfImitatingTheMarket > getRandomDouble())
             {
-                if (getMeanPriceOfTwoDaysBefore() < getMeanPriceOfDayBefore())
+                if (getMeanPriceOfTwoDaysBefore(currentStock) < getMeanPriceOfDayBefore(currentStock))
                 {
                     buysellswitch = 1 - this.asymmetricBuySellProb;
                 }
-                if (getMeanPriceOfTwoDaysBefore() > getMeanPriceOfDayBefore())
+                if (getMeanPriceOfTwoDaysBefore(currentStock) > getMeanPriceOfDayBefore(currentStock))
                 {
                     buysellswitch = this.asymmetricBuySellProb;
                 }
@@ -176,7 +175,7 @@ namespace StockMarketSimulation
 
             if (this.probOfLocalImitation > getRandomDouble())
             {
-                int tempDecision = getDecisionsOfLastAgents(this.localHistoryLength);
+                int tempDecision = getDecisionsOfLastAgents(this.localHistoryLength, currentStock);
                 if (tempDecision > 0)
                 {
                     buysellswitch = this.asymmetricBuySellProb;
@@ -205,7 +204,7 @@ namespace StockMarketSimulation
             }
 
             int stopLossChoice = 0;
-            double stopLossMeanPrice = StockMarketSimulation.stockPriceBook.getMeanPrice(this.stopLossInterval);
+            double stopLossMeanPrice = currentStock.stockPriceBook.getMeanPrice(this.stopLossInterval);
 
             if (LastPrice >= stopLossMeanPrice * (1 + this.maxLossRate))
                 stopLossChoice = 1;
@@ -233,7 +232,7 @@ namespace StockMarketSimulation
                 tempOrder.OrderAgentSizeOrder--;
             }
 
-            this.budget += tempOrder.OrderAgentSizeOrder * tempOrder.OrderAgentPriceOfOrder;
+            this.budget -= tempOrder.OrderAgentSizeOrder * tempOrder.OrderAgentPriceOfOrder;
             //if (StockMarketSimulation.simDay > 198) Console.WriteLine("Agent {0:D} has budget {1:F}", this.getAgentNumber(), this.budget);
 
             return tempOrder;
@@ -244,20 +243,20 @@ namespace StockMarketSimulation
             return this.budget + currentOrder.OrderAgentSizeOrder * currentOrder.OrderAgentPriceOfOrder > 0;
         }
 
-        private int getDecisionsOfLastAgents(int length)
+        private int getDecisionsOfLastAgents(int length, Stock stock)
         {
-            return StockMarketSimulation.stockPriceBook.getLocalHistory(length);
+            return stock.stockPriceBook.getLocalHistory(length);
         }
 
-        private double getMeanPriceOfDayBefore()
+        private double getMeanPriceOfDayBefore(Stock stock)
         {
-            return StockMarketSimulation.stockPriceBook.getEndofDayPrice(StockMarketSimulation.simDay - 1);
+            return stock.stockPriceBook.getEndofDayPrice(StockMarketSimulation.simDay - 1);
         }
 
-        private double getMeanPriceOfTwoDaysBefore()
+        private double getMeanPriceOfTwoDaysBefore(Stock stock)
         {
 
-            return StockMarketSimulation.stockPriceBook.getEndofDayPrice(StockMarketSimulation.simDay - 2);
+            return stock.stockPriceBook.getEndofDayPrice(StockMarketSimulation.simDay - 2);
         }
 
         private double getRandomDouble()

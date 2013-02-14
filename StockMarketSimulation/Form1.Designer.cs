@@ -53,6 +53,7 @@
             this.agentPreferencesMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.simulationChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.label5 = new System.Windows.Forms.Label();
+            this.buySellHistoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.realDataChart)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -203,22 +204,23 @@
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.loadStocksMenu});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
             this.fileToolStripMenuItem.Text = "Stocks";
             // 
             // loadStocksMenu
             // 
             this.loadStocksMenu.Name = "loadStocksMenu";
-            this.loadStocksMenu.Size = new System.Drawing.Size(137, 22);
+            this.loadStocksMenu.Size = new System.Drawing.Size(131, 22);
             this.loadStocksMenu.Text = "Load Stocks";
             this.loadStocksMenu.Click += new System.EventHandler(this.loadStocksMenu_Click);
             // 
             // agentsToolStripMenuItem
             // 
             this.agentsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.agentPreferencesMenu});
+            this.agentPreferencesMenu,
+            this.buySellHistoryToolStripMenuItem});
             this.agentsToolStripMenuItem.Name = "agentsToolStripMenuItem";
-            this.agentsToolStripMenuItem.Size = new System.Drawing.Size(56, 20);
+            this.agentsToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
             this.agentsToolStripMenuItem.Text = "Agents";
             // 
             // agentPreferencesMenu
@@ -254,6 +256,13 @@
             this.label5.Size = new System.Drawing.Size(65, 13);
             this.label5.TabIndex = 5;
             this.label5.Text = "Simulation";
+            // 
+            // buySellHistoryToolStripMenuItem
+            // 
+            this.buySellHistoryToolStripMenuItem.Name = "buySellHistoryToolStripMenuItem";
+            this.buySellHistoryToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.buySellHistoryToolStripMenuItem.Text = "Buy/Sell History";
+            this.buySellHistoryToolStripMenuItem.Click += new System.EventHandler(this.buySellHistoryToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -302,6 +311,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ToolStripMenuItem agentsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem agentPreferencesMenu;
+        private System.Windows.Forms.ToolStripMenuItem buySellHistoryToolStripMenuItem;
     }
 }
 

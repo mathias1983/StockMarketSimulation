@@ -7,12 +7,12 @@ namespace StockMarketSimulation
 {
     public class DefaultValues
     {
-        public int stopAtEpochNumber = 2000;
+        public int stopAtEpochNumber = 200;
 
-        public int agentNumber = 200;
+        public int agentNumber = 100;
         public int stockNumber = 10;
         public int budget = 100;
-        public int maxOrderNumber = 1;
+        public int maxOrderNumber = 100;
         public int stopLossInterval = 100;
 
         public float probOfImitatingTheMarket = 0.0F;

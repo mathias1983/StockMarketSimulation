@@ -23,6 +23,7 @@ namespace StockMarketSimulation
         private defaultValues defaultValues;
         private DefaultValues agentValues;
         private StockMarketSimulation sms;
+        public static Random random = new Random();
 
         public Form1()
         {
@@ -107,9 +108,9 @@ namespace StockMarketSimulation
             return serie;
         }
 
-        private Series createSerieForSimulatedDataChart(Stock stock)
+        private Series createSerieForSimulatedDataChart(Stock stock, int length)
         {
-            double[] prices = stock.GetPricesFromTo(0, 2000).ToArray();
+            double[] prices = stock.GetPricesFromTo(0, length).ToArray();
             Series serie = new Series();
             serie.ChartType = SeriesChartType.FastLine;
             serie.Name = stock.Name;
@@ -127,7 +128,6 @@ namespace StockMarketSimulation
 
         private Color getRandomColor()
         {
-            Random random = new Random();
             return Color.FromArgb(random.Next(256), random.Next(256), random.Next(256));
         }
 
@@ -150,7 +150,7 @@ namespace StockMarketSimulation
             
             if (result == DialogResult.OK)
             {
-                agentValues = new DefaultValues(dialog.EpochNumber, dialog.NumberOfAgents, dialog.MaxOrders, dialog.StopLoss, (float) dialog.ProbOfImitatingMarket,
+                agentValues = new DefaultValues(dialog.EpochNumber, dialog.NumberOfAgents, dialog.NumberOfStocks, dialog.Budget, dialog.MaxOrders, dialog.StopLoss, (float) dialog.ProbOfImitatingMarket,
                                                 (float)dialog.ProbOfLocalImitation, (float) dialog.AsymmetricBuySellProb, (float)dialog.ProbBeforeOpening,
                                                 (float) dialog.MinCorrection, (float)dialog.MaxCorrection, (float)dialog.FloorPrice, (float)dialog.AgentProbActBelowFloorPrice, dialog.MeanPriceHistoryLength,
                                                 dialog.LocalHistoryLength, (float) dialog.AgentProbAdoptStopLoss, (float)dialog.MaxLossRate);
@@ -163,7 +163,10 @@ namespace StockMarketSimulation
             sms.Start();
             this.simulationChart.Series.Clear();
             this.simulationChart.ResetAutoValues();
-            this.simulationChart.Series.Add(createSerieForSimulatedDataChart(sms.currentStock));
+            foreach (Stock stock in sms.allStocks)
+            {
+                this.simulationChart.Series.Add(createSerieForSimulatedDataChart(stock, sms.defaultValues.stopAtEpochNumber-1));
+            }
             this.simulationChart.ChartAreas[0].AxisX.Title = "Day";
             this.simulationChart.ChartAreas[0].AxisY.Title = "Stock Price";
         }

@@ -11,7 +11,7 @@ namespace StockMarketSimulation
         public DefaultValues defaultValues;
         public static StockPriceBook stockPriceBook;
         public static int simDay = 1;
-        public Stock currentStock;
+        public List<Stock> allStocks;
                 
         public StockMarketSimulation()
         {
@@ -29,12 +29,11 @@ namespace StockMarketSimulation
 
         public void Start()
         {
-            currentStock = new Stock("SuperStock");
+            createStocks();
             AgentManager am = new AgentManager(defaultValues);
             for (int i = 0; i < this.defaultValues.stopAtEpochNumber; i++)
             {
-                am.letAgentsAct();
-                currentStock.AddPrice(calculateNewPrice());
+                am.letAgentsAct(allStocks);
                 StockMarketSimulation.simDay++;
             }
         }
@@ -42,6 +41,16 @@ namespace StockMarketSimulation
         private double calculateNewPrice()
         {
             return stockPriceBook.getEndofDayPrice(StockMarketSimulation.simDay);
+        }
+
+        private void createStocks()
+        {
+            allStocks = new List<Stock>();
+            for (int i = 0; i < defaultValues.stockNumber; i++)
+            { 
+                Stock stock = new Stock(i.ToString());
+                allStocks.Add(stock);
+            }
         }
     }
 

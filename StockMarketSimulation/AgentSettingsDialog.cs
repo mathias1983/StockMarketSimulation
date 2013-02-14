@@ -15,6 +15,10 @@ namespace StockMarketSimulation
         public CultureInfo info;
         public int EpochNumber
         { get { return Int32.Parse(epochNumberTextbox.Text); } }
+        public int NumberOfStocks
+        { get { return Int32.Parse(numOfStocksTextbox.Text); } }
+        public int Budget
+        { get { return Int32.Parse(budgetTextbox.Text); } }
         public int NumberOfAgents
         { get{ return Int32.Parse(numberOfAgentsTextBox.Text); } }
         public int MaxOrders
@@ -51,5 +55,6 @@ namespace StockMarketSimulation
             info = new CultureInfo("en-US");
             InitializeComponent();
         }
+
     }
 }

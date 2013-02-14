@@ -12,6 +12,8 @@ namespace StockMarketSimulation
         public int stopLossInterval;
         public bool actedBeforeOpening;
 
+        public float budget;
+
         public float probOfImitatingTheMarket;
         public float probOfLocalImitation;
         public float asymmetricBuySellProb;
@@ -47,6 +49,8 @@ namespace StockMarketSimulation
             this.localHistoryLength = df.localHistoryLength;
             this.agentProbToAdoptStopLoss = df.agentProbToAdoptStopLoss;
             this.maxLossRate = df.maxLossRate;
+
+            this.budget = 100;
 
         }
         public int getAgentNumber()
@@ -137,7 +141,15 @@ namespace StockMarketSimulation
             tempOrder.OrderAgentPriceOfOrder = (float)price * choice;
             tempOrder.OrderAgentNumber = this.number;
             tempOrder.simulationDay = StockMarketSimulation.simDay;
+            tempOrder.OrderAgentSizeOrder = random.Next(1, maxOrderNumber + 1);
 
+            while (!isBudgetHighEnough(tempOrder) && tempOrder.OrderAgentSizeOrder > 0)
+            {
+                tempOrder.OrderAgentSizeOrder--;
+            }
+
+            this.budget += tempOrder.OrderAgentSizeOrder * tempOrder.OrderAgentPriceOfOrder;
+            //if(StockMarketSimulation.simDay > 198) Console.WriteLine("Agent {0:D} has budget {1:F}", this.getAgentNumber(), this.budget);
             return tempOrder;
         }
 
@@ -214,8 +226,22 @@ namespace StockMarketSimulation
             tempOrder.OrderAgentPriceOfOrder = (float)price * choice;
             tempOrder.OrderAgentNumber = this.number;
             tempOrder.simulationDay = StockMarketSimulation.simDay;
+            tempOrder.OrderAgentSizeOrder = random.Next(1, maxOrderNumber + 1);
+
+            while (!isBudgetHighEnough(tempOrder) && tempOrder.OrderAgentSizeOrder > 0)
+            {
+                tempOrder.OrderAgentSizeOrder--;
+            }
+
+            this.budget += tempOrder.OrderAgentSizeOrder * tempOrder.OrderAgentPriceOfOrder;
+            //if (StockMarketSimulation.simDay > 198) Console.WriteLine("Agent {0:D} has budget {1:F}", this.getAgentNumber(), this.budget);
 
             return tempOrder;
+        }
+
+        private bool isBudgetHighEnough(Order currentOrder)
+        {
+            return this.budget + currentOrder.OrderAgentSizeOrder * currentOrder.OrderAgentPriceOfOrder > 0;
         }
 
         private int getDecisionsOfLastAgents(int length)

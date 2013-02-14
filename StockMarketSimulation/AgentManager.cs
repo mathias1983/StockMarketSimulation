@@ -17,20 +17,22 @@ namespace StockMarketSimulation
             createAgents(dv);            
         }
 
-        public void letAgentsAct()
+        public void letAgentsAct(List<Stock> allStocks)
         {
-           
+            foreach (Stock currentStock in allStocks)
+            {
                 for (int j = 0; j < AgentList.Count; j++)
                 {
                     Order orderBeforeOpening = AgentList.ElementAt(j).actBeforeOpening();
                     Order orderAtMarket = AgentList.ElementAt(j).act();
-                    if (orderBeforeOpening.OrderAgentPriceOfOrder != 0) this.dailyOrders.Add(orderBeforeOpening);
-                    if (orderAtMarket.OrderAgentPriceOfOrder != 0) this.dailyOrders.Add(orderAtMarket);
-                    
+                    if (orderBeforeOpening.OrderAgentPriceOfOrder != 0 && orderBeforeOpening.OrderAgentSizeOrder > 0) this.dailyOrders.Add(orderBeforeOpening);
+                    if (orderAtMarket.OrderAgentPriceOfOrder != 0 && orderBeforeOpening.OrderAgentSizeOrder > 0) this.dailyOrders.Add(orderAtMarket);
+
                 }
-                writeOrdersToStockPriceBook(this.dailyOrders);
-                
+                currentStock.stockPriceBook.addDailyOrders(dailyOrders);
+                currentStock.AddPrice(currentStock.stockPriceBook.getEndofDayPrice(StockMarketSimulation.simDay));
                 this.dailyOrders.Clear();
+            }
         }
 
         private void createAgents(DefaultValues dv)
@@ -40,11 +42,6 @@ namespace StockMarketSimulation
                 AgentList.Add(new Agent(i, dv));
             }
 
-        }
-
-        private void writeOrdersToStockPriceBook(List<Order> dailyOrders)
-        {
-            StockMarketSimulation.stockPriceBook.addDailyOrders(dailyOrders);
         }
     }
 }

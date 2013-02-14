@@ -24,12 +24,15 @@ namespace StockMarketSimulation
         {
             get { return currentPrice; }
         }
+
+        public StockPriceBook stockPriceBook;
         
         public Stock(string name)
         {
             this.name = name;
             this.priceHistory = new List<double>();
             this.currentPrice = 0;
+            this.stockPriceBook = new StockPriceBook();
         }
 
         public double GetPriceFromDay(int day)

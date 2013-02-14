@@ -17,7 +17,6 @@ namespace StockMarketSimulation
     {
         private Dictionary<int, List<Order>> Orders = new Dictionary<int, List<Order>>();
 
-        private float lastPrice;
         private List<double> endOfDayPrices = new List<double>();
 
         public StockPriceBook()

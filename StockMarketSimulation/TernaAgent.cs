@@ -7,22 +7,15 @@ namespace StockMarketSimulation
 {
     public class TernaAgent : Agent
     {
-        public int number;
-        public int maxOrderNumber;
+
         public int stopLossInterval;
         public bool actedBeforeOpening;
-
-        public float budget;
-        public List<float> budgetHistory;
-        //stocks that are owned <stocknumber, amount>
-        public Dictionary<int, int> ownedStocks;
 
         public float probOfImitatingTheMarket;
         public float probOfLocalImitation;
         public float asymmetricBuySellProb;
         public float agentProbToActBeforeOpening;
-        public float minCorrectingCoefficient;
-        public float maxCorrectingCoefficient;
+
         public float floorP;
         public float agentProbToActBelowFloorPrice;
 
@@ -30,10 +23,6 @@ namespace StockMarketSimulation
         public int localHistoryLength;
         public float agentProbToAdoptStopLoss;
         public float maxLossRate;
-
-        // Without static Random always the same result with nextdouble() 
-
-        private static Random random = new Random();
 
         public TernaAgent(int number, DefaultValues df)
         {
@@ -59,7 +48,7 @@ namespace StockMarketSimulation
             createStockInventory(df);
         }
 
-        public Order act(Stock currentStock)
+        public override Order act(Stock currentStock)
         {
 
             Order tempOrder = new Order();
@@ -144,29 +133,12 @@ namespace StockMarketSimulation
             tempOrder.simulationDay = StockMarketSimulation.simDay;
             tempOrder.OrderAgentSizeOrder = random.Next(1, maxOrderNumber + 1);
 
-            //buy
-            if (tempOrder.OrderAgentPriceOfOrder > 0)
-            {
-                while (!isBudgetHighEnough(tempOrder) && tempOrder.OrderAgentSizeOrder > 0)
-                    tempOrder.OrderAgentSizeOrder--;
-                addToOwnedStocks(currentStock, tempOrder.OrderAgentSizeOrder);
-            }
-            //sell
-            else if (tempOrder.OrderAgentPriceOfOrder < 0)
-            {
-                while (!ownsEnoughStocks(Convert.ToInt32(currentStock.Name), tempOrder.OrderAgentSizeOrder) && tempOrder.OrderAgentSizeOrder > 0)
-                {
-                    tempOrder.OrderAgentSizeOrder--;
-                }
-                removeFromOwnedStocks(currentStock, tempOrder.OrderAgentSizeOrder);
-            }
-
-            this.budget -= tempOrder.OrderAgentSizeOrder * tempOrder.OrderAgentPriceOfOrder;
-            this.budgetHistory.Add(this.budget);
+            account(ref tempOrder, ref currentStock);
+            
             return tempOrder;
         }
 
-        public Order actBeforeOpening(Stock currentStock)
+        public override Order actBeforeOpening(Stock currentStock)
         {
             actedBeforeOpening = false;
 
@@ -241,105 +213,9 @@ namespace StockMarketSimulation
             tempOrder.simulationDay = StockMarketSimulation.simDay;
             tempOrder.OrderAgentSizeOrder = random.Next(1, maxOrderNumber + 1);
 
-            //buy
-            if (tempOrder.OrderAgentPriceOfOrder > 0)
-            {
-                while (!isBudgetHighEnough(tempOrder) && tempOrder.OrderAgentSizeOrder > 0)
-                    tempOrder.OrderAgentSizeOrder--;
-                addToOwnedStocks(currentStock, tempOrder.OrderAgentSizeOrder);
-            }
-            //sell
-            else if (tempOrder.OrderAgentPriceOfOrder < 0)
-            {
-                while (!ownsEnoughStocks(Convert.ToInt32(currentStock.Name), tempOrder.OrderAgentSizeOrder) && tempOrder.OrderAgentSizeOrder > 0)
-                {
-                    tempOrder.OrderAgentSizeOrder--;
-                }
-                removeFromOwnedStocks(currentStock, tempOrder.OrderAgentSizeOrder);
-            }
-
-            this.budget -= tempOrder.OrderAgentSizeOrder * tempOrder.OrderAgentPriceOfOrder;
-            this.budgetHistory.Add(this.budget);
+            account(ref tempOrder, ref currentStock);
             return tempOrder;
         }
 
-        private bool isBudgetHighEnough(Order currentOrder)
-        {
-            return this.budget - currentOrder.OrderAgentSizeOrder * currentOrder.OrderAgentPriceOfOrder > 0;
-        }
-
-        private bool ownsEnoughStocks(int stocknumber, int amount)
-        {
-            if (!ownedStocks.ContainsKey(stocknumber)) return false;
-
-            return ownedStocks[stocknumber] >= amount;
-        }
-
-        private void addToOwnedStocks(Stock stock, int amount)
-        {
-            this.ownedStocks[Convert.ToInt32(stock.Name)] += amount;
-        }
-
-        private void removeFromOwnedStocks(Stock stock, int amount)
-        {
-            this.ownedStocks[Convert.ToInt32(stock.Name)] -= amount;
-        }
-
-        private void createStockInventory(DefaultValues defaultValues)
-        {
-            for (int i = 0; i < defaultValues.stockNumber; i++)
-            {
-                this.ownedStocks.Add(i, 0);
-            }
-        }
-
-        private int getDecisionsOfLastAgents(int length, Stock stock)
-        {
-            return stock.stockPriceBook.getLocalHistory(length);
-        }
-
-        private double getMeanPriceOfDayBefore(Stock stock)
-        {
-            return stock.stockPriceBook.getEndofDayPrice(StockMarketSimulation.simDay - 1);
-        }
-
-        private double getMeanPriceOfTwoDaysBefore(Stock stock)
-        {
-
-            return stock.stockPriceBook.getEndofDayPrice(StockMarketSimulation.simDay - 2);
-        }
-
-        private double getRandomDouble()
-        {
-            double a = random.NextDouble();
-
-            return a;
-        }
-
-        private double getRandomDouble(float min, float max)
-        {
-            double a = random.NextDouble();
-            return min + a * (max - min);
-        }
-
-        public int getAgentNumber()
-        {
-            return this.number;
-        }
-
-        public List<float> getBudgetHistory()
-        {
-            return this.budgetHistory;
-        }
-
-        public float getBudget()
-        {
-            return this.budget;
-        }
-
-        public Dictionary<int, int> getStockInventory()
-        {
-            return this.ownedStocks;
-        }
     }
 }

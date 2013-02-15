@@ -165,7 +165,7 @@ namespace StockMarketSimulation
             this.simulationChart.ResetAutoValues();
             foreach (Stock stock in sms.allStocks)
             {
-                this.simulationChart.Series.Add(createSerieForSimulatedDataChart(stock, sms.defaultValues.stopAtEpochNumber-1));
+                this.simulationChart.Series.Add(createSerieForSimulatedDataChart(stock, StockMarketSimulation.simDay - 1));
             }
             this.simulationChart.ChartAreas[0].AxisX.Title = "Day";
             this.simulationChart.ChartAreas[0].AxisY.Title = "Stock Price";

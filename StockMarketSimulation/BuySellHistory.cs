@@ -74,7 +74,7 @@ namespace StockMarketSimulation
         {
             float[] money = agent.getBudgetHistory().ToArray();
             Series serie = new Series();
-            serie.ChartType = SeriesChartType.FastLine;
+            serie.ChartType = SeriesChartType.Column;
             string type = "intelligent";
             if (typeof(TernaAgent) == agent.GetType()) type = "terna";
             else if (typeof(RandomAgent) == agent.GetType()) type = "random";
@@ -86,7 +86,7 @@ namespace StockMarketSimulation
             serie.YValueMembers = "Money";
             for (int i = 0; i < money.Length; i++)
             {
-                serie.Points.AddXY(i + 1, money[i]);
+                serie.Points.AddXY(i+1, money[i]);
             }
             return serie;
         }

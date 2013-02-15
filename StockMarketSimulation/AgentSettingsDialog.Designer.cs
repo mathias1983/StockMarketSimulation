@@ -88,7 +88,7 @@
             this.numberOfTernaAgentsTextBox.Name = "numberOfTernaAgentsTextBox";
             this.numberOfTernaAgentsTextBox.Size = new System.Drawing.Size(50, 20);
             this.numberOfTernaAgentsTextBox.TabIndex = 1;
-            this.numberOfTernaAgentsTextBox.Text = "100";
+            this.numberOfTernaAgentsTextBox.Text = "50";
             // 
             // maxOrdersTextBox
             // 
@@ -96,7 +96,7 @@
             this.maxOrdersTextBox.Name = "maxOrdersTextBox";
             this.maxOrdersTextBox.Size = new System.Drawing.Size(50, 20);
             this.maxOrdersTextBox.TabIndex = 3;
-            this.maxOrdersTextBox.Text = "1";
+            this.maxOrdersTextBox.Text = "10";
             // 
             // label2
             // 
@@ -130,7 +130,7 @@
             this.probImitatingMarketTextbox.Name = "probImitatingMarketTextbox";
             this.probImitatingMarketTextbox.Size = new System.Drawing.Size(50, 20);
             this.probImitatingMarketTextbox.TabIndex = 7;
-            this.probImitatingMarketTextbox.Text = "0.0";
+            this.probImitatingMarketTextbox.Text = "0.1";
             // 
             // label4
             // 
@@ -147,7 +147,7 @@
             this.probLocalImitationTextBox.Name = "probLocalImitationTextBox";
             this.probLocalImitationTextBox.Size = new System.Drawing.Size(50, 20);
             this.probLocalImitationTextBox.TabIndex = 9;
-            this.probLocalImitationTextBox.Text = "0.0";
+            this.probLocalImitationTextBox.Text = "0.1";
             // 
             // label5
             // 
@@ -361,7 +361,7 @@
             this.budgetTextbox.Name = "budgetTextbox";
             this.budgetTextbox.Size = new System.Drawing.Size(50, 20);
             this.budgetTextbox.TabIndex = 34;
-            this.budgetTextbox.Text = "100";
+            this.budgetTextbox.Text = "1000";
             // 
             // label17
             // 
@@ -378,7 +378,7 @@
             this.numOfStocksTextbox.Name = "numOfStocksTextbox";
             this.numOfStocksTextbox.Size = new System.Drawing.Size(50, 20);
             this.numOfStocksTextbox.TabIndex = 36;
-            this.numOfStocksTextbox.Text = "10";
+            this.numOfStocksTextbox.Text = "5";
             // 
             // label18
             // 
@@ -395,7 +395,7 @@
             this.numberOfRandomAgentsTextbox.Name = "numberOfRandomAgentsTextbox";
             this.numberOfRandomAgentsTextbox.Size = new System.Drawing.Size(50, 20);
             this.numberOfRandomAgentsTextbox.TabIndex = 37;
-            this.numberOfRandomAgentsTextbox.Text = "10";
+            this.numberOfRandomAgentsTextbox.Text = "50";
             // 
             // label19
             // 

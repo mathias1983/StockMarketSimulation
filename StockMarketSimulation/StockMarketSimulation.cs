@@ -28,11 +28,13 @@ namespace StockMarketSimulation
 
         public void Start()
         {
+            StockMarketSimulation.simDay = 0;
             createStocks();
             am = new AgentManager(defaultValues);
             for (int i = 0; i < this.defaultValues.stopAtEpochNumber; i++)
             {
                 am.letAgentsAct(allStocks);
+                am.storeAgentsBudget();
                 StockMarketSimulation.simDay++;
             }
         }

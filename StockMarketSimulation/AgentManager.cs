@@ -34,6 +34,13 @@ namespace StockMarketSimulation
                 this.dailyOrders.Clear();
             }
         }
+        public void storeAgentsBudget()
+        {
+            foreach (Agent agent in AgentList)
+            {
+                agent.budgetHistory.Add(agent.budget);
+            }
+        }
 
         private void createAgents(DefaultValues dv)
         {

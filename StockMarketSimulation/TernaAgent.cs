@@ -14,6 +14,8 @@ namespace StockMarketSimulation
 
         public float budget;
         public List<float> budgetHistory;
+        //stocks that are owned <stocknumber, amount>
+        public Dictionary<int, int> ownedStocks;
 
         public float probOfImitatingTheMarket;
         public float probOfLocalImitation;
@@ -53,21 +55,8 @@ namespace StockMarketSimulation
             this.budget = df.budget;
             this.budgetHistory = new List<float>();
             this.budgetHistory.Add(this.budget);
-
-        }
-        public int getAgentNumber()
-        {
-            return this.number;
-        }
-
-        public List<float> getBudgetHistory()
-        {
-            return this.budgetHistory;
-        }
-
-        public float getBudget()
-        {
-            return this.budget;
+            this.ownedStocks = new Dictionary<int, int>();
+            createStockInventory(df);
         }
 
         public Order act(Stock currentStock)
@@ -155,9 +144,21 @@ namespace StockMarketSimulation
             tempOrder.simulationDay = StockMarketSimulation.simDay;
             tempOrder.OrderAgentSizeOrder = random.Next(1, maxOrderNumber + 1);
 
-            while (!isBudgetHighEnough(tempOrder) && tempOrder.OrderAgentSizeOrder > 0)
+            //buy
+            if (tempOrder.OrderAgentPriceOfOrder > 0)
             {
-                tempOrder.OrderAgentSizeOrder--;
+                while (!isBudgetHighEnough(tempOrder) && tempOrder.OrderAgentSizeOrder > 0)
+                    tempOrder.OrderAgentSizeOrder--;
+                addToOwnedStocks(currentStock, tempOrder.OrderAgentSizeOrder);
+            }
+            //sell
+            else if (tempOrder.OrderAgentPriceOfOrder < 0)
+            {
+                while (!ownsEnoughStocks(Convert.ToInt32(currentStock.Name), tempOrder.OrderAgentSizeOrder) && tempOrder.OrderAgentSizeOrder > 0)
+                {
+                    tempOrder.OrderAgentSizeOrder--;
+                }
+                removeFromOwnedStocks(currentStock, tempOrder.OrderAgentSizeOrder);
             }
 
             this.budget -= tempOrder.OrderAgentSizeOrder * tempOrder.OrderAgentPriceOfOrder;
@@ -240,9 +241,21 @@ namespace StockMarketSimulation
             tempOrder.simulationDay = StockMarketSimulation.simDay;
             tempOrder.OrderAgentSizeOrder = random.Next(1, maxOrderNumber + 1);
 
-            while (!isBudgetHighEnough(tempOrder) && tempOrder.OrderAgentSizeOrder > 0)
+            //buy
+            if (tempOrder.OrderAgentPriceOfOrder > 0)
             {
-                tempOrder.OrderAgentSizeOrder--;
+                while (!isBudgetHighEnough(tempOrder) && tempOrder.OrderAgentSizeOrder > 0)
+                    tempOrder.OrderAgentSizeOrder--;
+                addToOwnedStocks(currentStock, tempOrder.OrderAgentSizeOrder);
+            }
+            //sell
+            else if (tempOrder.OrderAgentPriceOfOrder < 0)
+            {
+                while (!ownsEnoughStocks(Convert.ToInt32(currentStock.Name), tempOrder.OrderAgentSizeOrder) && tempOrder.OrderAgentSizeOrder > 0)
+                {
+                    tempOrder.OrderAgentSizeOrder--;
+                }
+                removeFromOwnedStocks(currentStock, tempOrder.OrderAgentSizeOrder);
             }
 
             this.budget -= tempOrder.OrderAgentSizeOrder * tempOrder.OrderAgentPriceOfOrder;
@@ -253,6 +266,31 @@ namespace StockMarketSimulation
         private bool isBudgetHighEnough(Order currentOrder)
         {
             return this.budget - currentOrder.OrderAgentSizeOrder * currentOrder.OrderAgentPriceOfOrder > 0;
+        }
+
+        private bool ownsEnoughStocks(int stocknumber, int amount)
+        {
+            if (!ownedStocks.ContainsKey(stocknumber)) return false;
+
+            return ownedStocks[stocknumber] >= amount;
+        }
+
+        private void addToOwnedStocks(Stock stock, int amount)
+        {
+            this.ownedStocks[Convert.ToInt32(stock.Name)] += amount;
+        }
+
+        private void removeFromOwnedStocks(Stock stock, int amount)
+        {
+            this.ownedStocks[Convert.ToInt32(stock.Name)] -= amount;
+        }
+
+        private void createStockInventory(DefaultValues defaultValues)
+        {
+            for (int i = 0; i < defaultValues.stockNumber; i++)
+            {
+                this.ownedStocks.Add(i, 0);
+            }
         }
 
         private int getDecisionsOfLastAgents(int length, Stock stock)
@@ -282,6 +320,26 @@ namespace StockMarketSimulation
         {
             double a = random.NextDouble();
             return min + a * (max - min);
+        }
+
+        public int getAgentNumber()
+        {
+            return this.number;
+        }
+
+        public List<float> getBudgetHistory()
+        {
+            return this.budgetHistory;
+        }
+
+        public float getBudget()
+        {
+            return this.budget;
+        }
+
+        public Dictionary<int, int> getStockInventory()
+        {
+            return this.ownedStocks;
         }
     }
 }

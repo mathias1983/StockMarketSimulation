@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.tableView = new System.Windows.Forms.DataGridView();
             this.agentMoneyChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             ((System.ComponentModel.ISupportInitialize)(this.tableView)).BeginInit();
@@ -42,24 +42,24 @@
             this.tableView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tableView.Location = new System.Drawing.Point(12, 12);
             this.tableView.Name = "tableView";
-            this.tableView.Size = new System.Drawing.Size(358, 526);
+            this.tableView.Size = new System.Drawing.Size(510, 526);
             this.tableView.TabIndex = 0;
             this.tableView.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.tableView_RowHeaderMouseClick);
             // 
             // agentMoneyChart
             // 
-            chartArea2.Name = "ChartArea1";
-            this.agentMoneyChart.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.agentMoneyChart.Legends.Add(legend2);
-            this.agentMoneyChart.Location = new System.Drawing.Point(376, 12);
+            chartArea1.Name = "ChartArea1";
+            this.agentMoneyChart.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.agentMoneyChart.Legends.Add(legend1);
+            this.agentMoneyChart.Location = new System.Drawing.Point(528, 12);
             this.agentMoneyChart.Name = "agentMoneyChart";
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series2.Legend = "Legend1";
-            series2.Name = "Stock";
-            this.agentMoneyChart.Series.Add(series2);
-            this.agentMoneyChart.Size = new System.Drawing.Size(585, 526);
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series1.Legend = "Legend1";
+            series1.Name = "Stock";
+            this.agentMoneyChart.Series.Add(series1);
+            this.agentMoneyChart.Size = new System.Drawing.Size(546, 526);
             this.agentMoneyChart.TabIndex = 5;
             this.agentMoneyChart.Text = "Terna-Simulation";
             // 
@@ -67,7 +67,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(973, 550);
+            this.ClientSize = new System.Drawing.Size(1086, 550);
             this.Controls.Add(this.agentMoneyChart);
             this.Controls.Add(this.tableView);
             this.Name = "BuySellHistory";

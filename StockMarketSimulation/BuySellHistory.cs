@@ -28,12 +28,25 @@ namespace StockMarketSimulation
             this.tableView.Columns.Add("Agent Number", "Agent Number");
             this.tableView.Columns.Add("Agent Type", "Agent Type");
             this.tableView.Columns.Add("Final Budget", "Final Budget");
+            this.tableView.Columns.Add("Final Shares", "Final Shares (StockNumber:amount)");
+            this.tableView.Columns.Add("Value of Shares", "Value of Shares");
+            this.tableView.Columns.Add("Total", "Total");
             string type = "intelligent";
+            string shares = "";
+            double valueOfShares = 0F;
+            Dictionary<int, int> inventory;
             foreach (Agent agent in Agents)
             {
+                shares = "";
                 if (agent.GetType() == typeof(RandomAgent)) type = "random";
                 else if (agent.GetType() == typeof(TernaAgent)) type = "terna";
-                this.tableView.Rows.Add(agent.getAgentNumber(), type, agent.getBudget());
+                inventory = agent.getStockInventory();
+                for (int i = 0; i < inventory.Count; i++)
+                {
+                    shares += i.ToString() + ":" + inventory[i].ToString() + " | ";
+                }
+                valueOfShares = calculateValueOfInventory(inventory);
+                this.tableView.Rows.Add(agent.getAgentNumber(), type, Math.Round(agent.getBudget(), 2), shares, Math.Round(valueOfShares, 2), Math.Round(agent.getBudget()+valueOfShares, 2));
             }
         }
 
@@ -45,6 +58,16 @@ namespace StockMarketSimulation
             this.agentMoneyChart.ChartAreas[0].AxisX.Title = "Day";
             this.agentMoneyChart.ChartAreas[0].AxisY.Title = "Money";
 
+        }
+
+        public double calculateValueOfInventory(Dictionary<int, int> inventory)
+        {
+            double sum = 0F;
+            for (int i = 0; i < this.Stocks.Count; i++)
+            {
+                sum += inventory[i] * Stocks.ElementAt(i).stockPriceBook.getEndofDayPrice(StockMarketSimulation.simDay-1);
+            }
+            return sum;
         }
 
         private Series createSerieForAgentBudget(Agent agent)

@@ -10,6 +10,7 @@ namespace StockMarketSimulation
         List<float> getBudgetHistory();
         float getBudget();
         int getAgentNumber();
+        Dictionary<int, int> getStockInventory();
         Order act(Stock currentStock);
         Order actBeforeOpening(Stock currentStock);
 

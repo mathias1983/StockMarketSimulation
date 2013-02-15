@@ -13,6 +13,7 @@ namespace StockMarketSimulation
         public bool actedBeforeOpening;
 
         public float budget;
+        public List<float> budgetHistory;
 
         public float probOfImitatingTheMarket;
         public float probOfLocalImitation;
@@ -50,6 +51,8 @@ namespace StockMarketSimulation
             this.agentProbToAdoptStopLoss = df.agentProbToAdoptStopLoss;
             this.maxLossRate = df.maxLossRate;
             this.budget = df.budget;
+            this.budgetHistory = new List<float>();
+            this.budgetHistory.Add(this.budget);
 
         }
         public int getAgentNumber()
@@ -148,7 +151,7 @@ namespace StockMarketSimulation
             }
 
             this.budget -= tempOrder.OrderAgentSizeOrder * tempOrder.OrderAgentPriceOfOrder;
-            if(StockMarketSimulation.simDay > 198) Console.WriteLine("Agent {0:D} has budget {1:F}", this.getAgentNumber(), this.budget);
+            this.budgetHistory.Add(this.budget);
             return tempOrder;
         }
 
@@ -233,14 +236,13 @@ namespace StockMarketSimulation
             }
 
             this.budget -= tempOrder.OrderAgentSizeOrder * tempOrder.OrderAgentPriceOfOrder;
-            //if (StockMarketSimulation.simDay > 198) Console.WriteLine("Agent {0:D} has budget {1:F}", this.getAgentNumber(), this.budget);
-
+            this.budgetHistory.Add(this.budget);
             return tempOrder;
         }
 
         private bool isBudgetHighEnough(Order currentOrder)
         {
-            return this.budget + currentOrder.OrderAgentSizeOrder * currentOrder.OrderAgentPriceOfOrder > 0;
+            return this.budget - currentOrder.OrderAgentSizeOrder * currentOrder.OrderAgentPriceOfOrder > 0;
         }
 
         private int getDecisionsOfLastAgents(int length, Stock stock)

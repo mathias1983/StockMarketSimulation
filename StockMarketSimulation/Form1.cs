@@ -126,7 +126,7 @@ namespace StockMarketSimulation
             return serie;
         }
 
-        private Color getRandomColor()
+        public static Color getRandomColor()
         {
             return Color.FromArgb(random.Next(256), random.Next(256), random.Next(256));
         }

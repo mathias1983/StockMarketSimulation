@@ -51,17 +51,21 @@
             this.loadStocksMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.agentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.agentPreferencesMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.buySellHistoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.simulationChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.label5 = new System.Windows.Forms.Label();
-            this.buySellHistoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.consoleTextbox = new System.Windows.Forms.RichTextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.realDataChart)).BeginInit();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.simulationChart)).BeginInit();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.toDaysTextBox);
             this.panel1.Controls.Add(this.simulateBtn);
@@ -73,7 +77,7 @@
             this.panel1.Controls.Add(this.label2);
             this.panel1.Location = new System.Drawing.Point(12, 439);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(760, 111);
+            this.panel1.Size = new System.Drawing.Size(1037, 111);
             this.panel1.TabIndex = 0;
             // 
             // label4
@@ -96,7 +100,7 @@
             // simulateBtn
             // 
             this.simulateBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.simulateBtn.Location = new System.Drawing.Point(491, 68);
+            this.simulateBtn.Location = new System.Drawing.Point(406, 68);
             this.simulateBtn.Name = "simulateBtn";
             this.simulateBtn.Size = new System.Drawing.Size(252, 40);
             this.simulateBtn.TabIndex = 7;
@@ -226,9 +230,16 @@
             // agentPreferencesMenu
             // 
             this.agentPreferencesMenu.Name = "agentPreferencesMenu";
-            this.agentPreferencesMenu.Size = new System.Drawing.Size(152, 22);
+            this.agentPreferencesMenu.Size = new System.Drawing.Size(149, 22);
             this.agentPreferencesMenu.Text = "Preferences";
             this.agentPreferencesMenu.Click += new System.EventHandler(this.agentPreferencesMenu_Click);
+            // 
+            // buySellHistoryToolStripMenuItem
+            // 
+            this.buySellHistoryToolStripMenuItem.Name = "buySellHistoryToolStripMenuItem";
+            this.buySellHistoryToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.buySellHistoryToolStripMenuItem.Text = "Buy/Sell History";
+            this.buySellHistoryToolStripMenuItem.Click += new System.EventHandler(this.buySellHistoryToolStripMenuItem_Click);
             // 
             // simulationChart
             // 
@@ -257,12 +268,22 @@
             this.label5.TabIndex = 5;
             this.label5.Text = "Simulation";
             // 
-            // buySellHistoryToolStripMenuItem
+            // panel2
             // 
-            this.buySellHistoryToolStripMenuItem.Name = "buySellHistoryToolStripMenuItem";
-            this.buySellHistoryToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.buySellHistoryToolStripMenuItem.Text = "Buy/Sell History";
-            this.buySellHistoryToolStripMenuItem.Click += new System.EventHandler(this.buySellHistoryToolStripMenuItem_Click);
+            this.panel2.Controls.Add(this.consoleTextbox);
+            this.panel2.Location = new System.Drawing.Point(666, 4);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(368, 100);
+            this.panel2.TabIndex = 10;
+            // 
+            // consoleTextbox
+            // 
+            this.consoleTextbox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.consoleTextbox.Location = new System.Drawing.Point(0, 0);
+            this.consoleTextbox.Name = "consoleTextbox";
+            this.consoleTextbox.Size = new System.Drawing.Size(368, 100);
+            this.consoleTextbox.TabIndex = 0;
+            this.consoleTextbox.Text = "";
             // 
             // Form1
             // 
@@ -285,6 +306,7 @@
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.simulationChart)).EndInit();
+            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -312,6 +334,8 @@
         private System.Windows.Forms.ToolStripMenuItem agentsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem agentPreferencesMenu;
         private System.Windows.Forms.ToolStripMenuItem buySellHistoryToolStripMenuItem;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.RichTextBox consoleTextbox;
     }
 }
 

@@ -159,6 +159,7 @@ namespace StockMarketSimulation
 
         private void simulateBtn_Click(object sender, EventArgs e)
         {
+            this.consoleTextbox.Text = "Simulating...";
             sms = new StockMarketSimulation(agentValues);
             sms.Start();
             this.simulationChart.Series.Clear();
@@ -169,6 +170,11 @@ namespace StockMarketSimulation
             }
             this.simulationChart.ChartAreas[0].AxisX.Title = "Day";
             this.simulationChart.ChartAreas[0].AxisY.Title = "Stock Price";
+            this.consoleTextbox.Text = "Time Results: (Time needed for simulation in mm:ss.milliseconds)\n";
+            foreach (string text in sms.StopwatchTimes)
+            {
+                this.consoleTextbox.Text += text + "\n";
+            }
         }
 
         private void buySellHistoryToolStripMenuItem_Click(object sender, EventArgs e)

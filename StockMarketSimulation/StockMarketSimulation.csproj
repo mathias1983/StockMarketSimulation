@@ -49,6 +49,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Agent.cs" />
+    <Compile Include="RandomAgent.cs" />
+    <Compile Include="TernaAgent.cs" />
     <Compile Include="AgentManager.cs" />
     <Compile Include="AgentSettingsDialog.cs">
       <SubType>Form</SubType>

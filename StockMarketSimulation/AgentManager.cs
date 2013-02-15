@@ -37,9 +37,12 @@ namespace StockMarketSimulation
 
         private void createAgents(DefaultValues dv)
         {
-            for (int i = 0; i < dv.agentNumber; i++)
+            int agentNumber = dv.ternaAgentNumber + dv.randomAgentNumber + dv.intelligentAgentNumber;
+            for (int i = 0; i < agentNumber; i++)
             {
-                AgentList.Add(new Agent(i, dv));
+                if (i < dv.randomAgentNumber) AgentList.Add(new RandomAgent(i, dv));
+                else if (i < dv.randomAgentNumber+dv.ternaAgentNumber) AgentList.Add(new TernaAgent(i, dv));
+                //else AgentList.Add(new IntelligentAgent(i, dv));
             }
 
         }

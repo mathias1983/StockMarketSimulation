@@ -19,8 +19,12 @@ namespace StockMarketSimulation
         { get { return Int32.Parse(numOfStocksTextbox.Text); } }
         public int Budget
         { get { return Int32.Parse(budgetTextbox.Text); } }
-        public int NumberOfAgents
-        { get{ return Int32.Parse(numberOfAgentsTextBox.Text); } }
+        public int NumberOfTernaAgents
+        { get{ return Int32.Parse(numberOfTernaAgentsTextBox.Text); } }
+        public int NumberOfRandomAgents
+        { get { return Int32.Parse(numberOfRandomAgentsTextbox.Text); } }
+        public int NumberOfIntelligentAgents
+        { get { return Int32.Parse(numberOfIntelligentAgentTextbox.Text); } }
         public int MaxOrders
         { get{ return Int32.Parse(maxOrdersTextBox.Text); } }
         public int StopLoss

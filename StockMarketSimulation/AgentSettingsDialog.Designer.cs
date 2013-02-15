@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.numberOfAgentsTextBox = new System.Windows.Forms.TextBox();
+            this.numberOfTernaAgentsTextBox = new System.Windows.Forms.TextBox();
             this.maxOrdersTextBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.stopLossTextBox = new System.Windows.Forms.TextBox();
@@ -65,28 +65,34 @@
             this.label17 = new System.Windows.Forms.Label();
             this.numOfStocksTextbox = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
+            this.numberOfRandomAgentsTextbox = new System.Windows.Forms.TextBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.numberOfIntelligentAgentTextbox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(22, 34);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(226, 13);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(95, 13);
+            this.label1.Size = new System.Drawing.Size(92, 13);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Number of Agents:";
+            this.label1.Text = "Number of Agents";
             // 
-            // numberOfAgentsTextBox
+            // numberOfTernaAgentsTextBox
             // 
-            this.numberOfAgentsTextBox.Location = new System.Drawing.Point(120, 31);
-            this.numberOfAgentsTextBox.Name = "numberOfAgentsTextBox";
-            this.numberOfAgentsTextBox.Size = new System.Drawing.Size(50, 20);
-            this.numberOfAgentsTextBox.TabIndex = 1;
-            this.numberOfAgentsTextBox.Text = "100";
+            this.numberOfTernaAgentsTextBox.Location = new System.Drawing.Point(294, 57);
+            this.numberOfTernaAgentsTextBox.Name = "numberOfTernaAgentsTextBox";
+            this.numberOfTernaAgentsTextBox.Size = new System.Drawing.Size(50, 20);
+            this.numberOfTernaAgentsTextBox.TabIndex = 1;
+            this.numberOfTernaAgentsTextBox.Text = "100";
             // 
             // maxOrdersTextBox
             // 
-            this.maxOrdersTextBox.Location = new System.Drawing.Point(120, 57);
+            this.maxOrdersTextBox.Location = new System.Drawing.Point(499, 61);
             this.maxOrdersTextBox.Name = "maxOrdersTextBox";
             this.maxOrdersTextBox.Size = new System.Drawing.Size(50, 20);
             this.maxOrdersTextBox.TabIndex = 3;
@@ -95,7 +101,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(22, 60);
+            this.label2.Location = new System.Drawing.Point(401, 64);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(64, 13);
             this.label2.TabIndex = 2;
@@ -120,7 +126,7 @@
             // 
             // probImitatingMarketTextbox
             // 
-            this.probImitatingMarketTextbox.Location = new System.Drawing.Point(198, 108);
+            this.probImitatingMarketTextbox.Location = new System.Drawing.Point(198, 136);
             this.probImitatingMarketTextbox.Name = "probImitatingMarketTextbox";
             this.probImitatingMarketTextbox.Size = new System.Drawing.Size(50, 20);
             this.probImitatingMarketTextbox.TabIndex = 7;
@@ -129,7 +135,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 111);
+            this.label4.Location = new System.Drawing.Point(12, 139);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(143, 13);
             this.label4.TabIndex = 6;
@@ -137,7 +143,7 @@
             // 
             // probLocalImitationTextBox
             // 
-            this.probLocalImitationTextBox.Location = new System.Drawing.Point(198, 134);
+            this.probLocalImitationTextBox.Location = new System.Drawing.Point(198, 162);
             this.probLocalImitationTextBox.Name = "probLocalImitationTextBox";
             this.probLocalImitationTextBox.Size = new System.Drawing.Size(50, 20);
             this.probLocalImitationTextBox.TabIndex = 9;
@@ -146,7 +152,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(12, 137);
+            this.label5.Location = new System.Drawing.Point(12, 165);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(114, 13);
             this.label5.TabIndex = 8;
@@ -154,7 +160,7 @@
             // 
             // asymmetricTextbox
             // 
-            this.asymmetricTextbox.Location = new System.Drawing.Point(198, 160);
+            this.asymmetricTextbox.Location = new System.Drawing.Point(198, 188);
             this.asymmetricTextbox.Name = "asymmetricTextbox";
             this.asymmetricTextbox.Size = new System.Drawing.Size(50, 20);
             this.asymmetricTextbox.TabIndex = 11;
@@ -163,7 +169,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(12, 163);
+            this.label6.Location = new System.Drawing.Point(12, 191);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(132, 13);
             this.label6.TabIndex = 10;
@@ -171,7 +177,7 @@
             // 
             // probBeforeOpeningTextbox
             // 
-            this.probBeforeOpeningTextbox.Location = new System.Drawing.Point(198, 186);
+            this.probBeforeOpeningTextbox.Location = new System.Drawing.Point(198, 214);
             this.probBeforeOpeningTextbox.Name = "probBeforeOpeningTextbox";
             this.probBeforeOpeningTextbox.Size = new System.Drawing.Size(50, 20);
             this.probBeforeOpeningTextbox.TabIndex = 13;
@@ -180,7 +186,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(12, 189);
+            this.label7.Location = new System.Drawing.Point(12, 217);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(171, 13);
             this.label7.TabIndex = 12;
@@ -188,7 +194,7 @@
             // 
             // minCorTextbox
             // 
-            this.minCorTextbox.Location = new System.Drawing.Point(198, 212);
+            this.minCorTextbox.Location = new System.Drawing.Point(198, 240);
             this.minCorTextbox.Name = "minCorTextbox";
             this.minCorTextbox.Size = new System.Drawing.Size(50, 20);
             this.minCorTextbox.TabIndex = 15;
@@ -197,7 +203,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(12, 215);
+            this.label8.Location = new System.Drawing.Point(12, 243);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(131, 13);
             this.label8.TabIndex = 14;
@@ -205,7 +211,7 @@
             // 
             // maxCorTextbox
             // 
-            this.maxCorTextbox.Location = new System.Drawing.Point(198, 238);
+            this.maxCorTextbox.Location = new System.Drawing.Point(198, 266);
             this.maxCorTextbox.Name = "maxCorTextbox";
             this.maxCorTextbox.Size = new System.Drawing.Size(50, 20);
             this.maxCorTextbox.TabIndex = 17;
@@ -214,7 +220,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(12, 241);
+            this.label9.Location = new System.Drawing.Point(12, 269);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(134, 13);
             this.label9.TabIndex = 16;
@@ -222,7 +228,7 @@
             // 
             // agentProbActBelowFloorPriceTextbox
             // 
-            this.agentProbActBelowFloorPriceTextbox.Location = new System.Drawing.Point(491, 134);
+            this.agentProbActBelowFloorPriceTextbox.Location = new System.Drawing.Point(491, 162);
             this.agentProbActBelowFloorPriceTextbox.Name = "agentProbActBelowFloorPriceTextbox";
             this.agentProbActBelowFloorPriceTextbox.Size = new System.Drawing.Size(50, 20);
             this.agentProbActBelowFloorPriceTextbox.TabIndex = 21;
@@ -231,7 +237,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(306, 137);
+            this.label10.Location = new System.Drawing.Point(306, 165);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(181, 13);
             this.label10.TabIndex = 20;
@@ -239,7 +245,7 @@
             // 
             // floorPriceTextbox
             // 
-            this.floorPriceTextbox.Location = new System.Drawing.Point(491, 108);
+            this.floorPriceTextbox.Location = new System.Drawing.Point(491, 136);
             this.floorPriceTextbox.Name = "floorPriceTextbox";
             this.floorPriceTextbox.Size = new System.Drawing.Size(50, 20);
             this.floorPriceTextbox.TabIndex = 19;
@@ -248,7 +254,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(306, 111);
+            this.label11.Location = new System.Drawing.Point(306, 139);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(60, 13);
             this.label11.TabIndex = 18;
@@ -256,7 +262,7 @@
             // 
             // localHostoryLengthTextbox
             // 
-            this.localHostoryLengthTextbox.Location = new System.Drawing.Point(491, 186);
+            this.localHostoryLengthTextbox.Location = new System.Drawing.Point(491, 214);
             this.localHostoryLengthTextbox.Name = "localHostoryLengthTextbox";
             this.localHostoryLengthTextbox.Size = new System.Drawing.Size(50, 20);
             this.localHostoryLengthTextbox.TabIndex = 25;
@@ -265,7 +271,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(306, 189);
+            this.label12.Location = new System.Drawing.Point(306, 217);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(107, 13);
             this.label12.TabIndex = 24;
@@ -273,7 +279,7 @@
             // 
             // meanPriceHistoryLengthTextbox
             // 
-            this.meanPriceHistoryLengthTextbox.Location = new System.Drawing.Point(491, 160);
+            this.meanPriceHistoryLengthTextbox.Location = new System.Drawing.Point(491, 188);
             this.meanPriceHistoryLengthTextbox.Name = "meanPriceHistoryLengthTextbox";
             this.meanPriceHistoryLengthTextbox.Size = new System.Drawing.Size(50, 20);
             this.meanPriceHistoryLengthTextbox.TabIndex = 23;
@@ -282,7 +288,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(306, 163);
+            this.label13.Location = new System.Drawing.Point(306, 191);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(135, 13);
             this.label13.TabIndex = 22;
@@ -290,7 +296,7 @@
             // 
             // maxLossRateTextBox
             // 
-            this.maxLossRateTextBox.Location = new System.Drawing.Point(491, 238);
+            this.maxLossRateTextBox.Location = new System.Drawing.Point(491, 266);
             this.maxLossRateTextBox.Name = "maxLossRateTextBox";
             this.maxLossRateTextBox.Size = new System.Drawing.Size(50, 20);
             this.maxLossRateTextBox.TabIndex = 29;
@@ -299,7 +305,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(306, 241);
+            this.label14.Location = new System.Drawing.Point(306, 269);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(81, 13);
             this.label14.TabIndex = 28;
@@ -307,7 +313,7 @@
             // 
             // agentProbAdoptStopLossTextbox
             // 
-            this.agentProbAdoptStopLossTextbox.Location = new System.Drawing.Point(491, 212);
+            this.agentProbAdoptStopLossTextbox.Location = new System.Drawing.Point(491, 240);
             this.agentProbAdoptStopLossTextbox.Name = "agentProbAdoptStopLossTextbox";
             this.agentProbAdoptStopLossTextbox.Size = new System.Drawing.Size(50, 20);
             this.agentProbAdoptStopLossTextbox.TabIndex = 27;
@@ -316,7 +322,7 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(306, 215);
+            this.label15.Location = new System.Drawing.Point(306, 243);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(159, 13);
             this.label15.TabIndex = 26;
@@ -325,7 +331,7 @@
             // button1
             // 
             this.button1.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.button1.Location = new System.Drawing.Point(403, 20);
+            this.button1.Location = new System.Drawing.Point(403, 303);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(138, 58);
             this.button1.TabIndex = 30;
@@ -351,7 +357,7 @@
             // 
             // budgetTextbox
             // 
-            this.budgetTextbox.Location = new System.Drawing.Point(293, 6);
+            this.budgetTextbox.Location = new System.Drawing.Point(499, 32);
             this.budgetTextbox.Name = "budgetTextbox";
             this.budgetTextbox.Size = new System.Drawing.Size(50, 20);
             this.budgetTextbox.TabIndex = 34;
@@ -360,7 +366,7 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(195, 9);
+            this.label17.Location = new System.Drawing.Point(401, 35);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(75, 13);
             this.label17.TabIndex = 33;
@@ -368,7 +374,7 @@
             // 
             // numOfStocksTextbox
             // 
-            this.numOfStocksTextbox.Location = new System.Drawing.Point(293, 31);
+            this.numOfStocksTextbox.Location = new System.Drawing.Point(120, 35);
             this.numOfStocksTextbox.Name = "numOfStocksTextbox";
             this.numOfStocksTextbox.Size = new System.Drawing.Size(50, 20);
             this.numOfStocksTextbox.TabIndex = 36;
@@ -377,17 +383,66 @@
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(195, 34);
+            this.label18.Location = new System.Drawing.Point(22, 38);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(95, 13);
             this.label18.TabIndex = 35;
             this.label18.Text = "Number of Stocks:";
             // 
+            // numberOfRandomAgentsTextbox
+            // 
+            this.numberOfRandomAgentsTextbox.Location = new System.Drawing.Point(294, 31);
+            this.numberOfRandomAgentsTextbox.Name = "numberOfRandomAgentsTextbox";
+            this.numberOfRandomAgentsTextbox.Size = new System.Drawing.Size(50, 20);
+            this.numberOfRandomAgentsTextbox.TabIndex = 37;
+            this.numberOfRandomAgentsTextbox.Text = "10";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(236, 60);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(38, 13);
+            this.label19.TabIndex = 38;
+            this.label19.Text = "Terna:";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(236, 35);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(50, 13);
+            this.label20.TabIndex = 39;
+            this.label20.Text = "Random:";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(236, 86);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(55, 13);
+            this.label21.TabIndex = 41;
+            this.label21.Text = "Intelligent:";
+            // 
+            // numberOfIntelligentAgentTextbox
+            // 
+            this.numberOfIntelligentAgentTextbox.Enabled = false;
+            this.numberOfIntelligentAgentTextbox.Location = new System.Drawing.Point(294, 83);
+            this.numberOfIntelligentAgentTextbox.Name = "numberOfIntelligentAgentTextbox";
+            this.numberOfIntelligentAgentTextbox.Size = new System.Drawing.Size(50, 20);
+            this.numberOfIntelligentAgentTextbox.TabIndex = 40;
+            this.numberOfIntelligentAgentTextbox.Text = "0";
+            // 
             // AgentSettingsDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(568, 273);
+            this.ClientSize = new System.Drawing.Size(568, 373);
+            this.Controls.Add(this.label21);
+            this.Controls.Add(this.numberOfIntelligentAgentTextbox);
+            this.Controls.Add(this.label20);
+            this.Controls.Add(this.label19);
+            this.Controls.Add(this.numberOfRandomAgentsTextbox);
             this.Controls.Add(this.numOfStocksTextbox);
             this.Controls.Add(this.label18);
             this.Controls.Add(this.budgetTextbox);
@@ -423,7 +478,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.maxOrdersTextBox);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.numberOfAgentsTextBox);
+            this.Controls.Add(this.numberOfTernaAgentsTextBox);
             this.Controls.Add(this.label1);
             this.Name = "AgentSettingsDialog";
             this.Text = "AgentSettingsDialog";
@@ -435,7 +490,7 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox numberOfAgentsTextBox;
+        private System.Windows.Forms.TextBox numberOfTernaAgentsTextBox;
         private System.Windows.Forms.TextBox maxOrdersTextBox;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox stopLossTextBox;
@@ -471,5 +526,10 @@
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.TextBox numOfStocksTextbox;
         private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.TextBox numberOfRandomAgentsTextbox;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.TextBox numberOfIntelligentAgentTextbox;
     }
 }

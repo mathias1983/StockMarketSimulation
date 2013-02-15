@@ -20,6 +20,7 @@ namespace StockMarketSimulation
             this.Agents = agents;
             InitializeComponent();
             calculateTable();
+            calculateChart(0);
         }
 
         private void calculateTable()
@@ -27,10 +28,12 @@ namespace StockMarketSimulation
             this.tableView.Columns.Add("Agent Number", "Agent Number");
             this.tableView.Columns.Add("Agent Type", "Agent Type");
             this.tableView.Columns.Add("Final Budget", "Final Budget");
-
+            string type = "intelligent";
             foreach (Agent agent in Agents)
             {
-                this.tableView.Rows.Add(agent.number, "normal", agent.budget);
+                if (agent.GetType() == typeof(RandomAgent)) type = "random";
+                else if (agent.GetType() == typeof(TernaAgent)) type = "terna";
+                this.tableView.Rows.Add(agent.getAgentNumber(), type, agent.getBudget());
             }
         }
 
@@ -46,10 +49,13 @@ namespace StockMarketSimulation
 
         private Series createSerieForAgentBudget(Agent agent)
         {
-            float[] money = agent.budgetHistory.ToArray();
+            float[] money = agent.getBudgetHistory().ToArray();
             Series serie = new Series();
             serie.ChartType = SeriesChartType.FastLine;
-            serie.Name = agent.number.ToString(); //TODO: hier noch typ vom agenten dazu
+            string type = "intelligent";
+            if (typeof(TernaAgent) == agent.GetType()) type = "terna";
+            else if (typeof(RandomAgent) == agent.GetType()) type = "random";
+            serie.Name = agent.getAgentNumber().ToString() + "("+type+")";
             serie.Color = Form1.getRandomColor();
             serie.XValueType = ChartValueType.Int32;
             serie.XValueMember = "Day";
@@ -64,7 +70,7 @@ namespace StockMarketSimulation
 
         private void tableView_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            calculateChart(e.RowIndex);
+            calculateChart(Convert.ToInt32(this.tableView.CurrentRow.Cells[0].Value));
         }
     }
 }

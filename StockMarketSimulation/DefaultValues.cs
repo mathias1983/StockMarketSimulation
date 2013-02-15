@@ -9,7 +9,13 @@ namespace StockMarketSimulation
     {
         public int stopAtEpochNumber = 200;
 
-        public int agentNumber = 100;
+        public int ternaAgentNumber = 100;
+        public int randomAgentNumber = 10;
+        public int intelligentAgentNumber = 0;
+
+        public int NumberOfAllAgents
+        { get { return ternaAgentNumber + randomAgentNumber + intelligentAgentNumber; } }
+
         public int stockNumber = 10;
         public int budget = 100;
         public int maxOrderNumber = 100;
@@ -32,13 +38,15 @@ namespace StockMarketSimulation
         public DefaultValues()
         { }
 
-        public DefaultValues(int _stopAtEpochNumber, int _agentNumber, int _stockNumber, int _budget, int _maxOrderNumber, int _stopLossInterval, float _probOfImitatingTheMarket,
+        public DefaultValues(int _stopAtEpochNumber, int _ternaAgentNumber, int _randomAgentNumber, int _intelligentAgentNumber, int _stockNumber, int _budget, int _maxOrderNumber, int _stopLossInterval, float _probOfImitatingTheMarket,
                             float _probOfLocalImitation, float _asymmetricBuySellProb, float _agentProbToActBeforeOpening,
                             float _minCorrectingCoefficient, float _maxCorrectingCoefficient, float _floorP, float _agentProbToActBelowFloorPrice,
                             int _meanPriceHistoryLength, int _localHistoryLength, float _agentProbToAdoptStopLoss, float _maxLossRate)
         {
             stopAtEpochNumber = _stopAtEpochNumber;
-            agentNumber = _agentNumber;
+            ternaAgentNumber = _ternaAgentNumber;
+            randomAgentNumber = _randomAgentNumber;
+            intelligentAgentNumber = _intelligentAgentNumber;
             stockNumber = _stockNumber;
             budget = _budget;
             maxOrderNumber = _maxOrderNumber;

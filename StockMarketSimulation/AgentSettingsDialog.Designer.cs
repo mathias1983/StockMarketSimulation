@@ -69,7 +69,9 @@
             this.label19 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
-            this.numberOfIntelligentAgentTextbox = new System.Windows.Forms.TextBox();
+            this.numberOfRiskAvoidingAgentTextbox = new System.Windows.Forms.TextBox();
+            this.label22 = new System.Windows.Forms.Label();
+            this.numberOfRiskSeekingAgentTextbox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -84,7 +86,7 @@
             // 
             // numberOfTernaAgentsTextBox
             // 
-            this.numberOfTernaAgentsTextBox.Location = new System.Drawing.Point(294, 57);
+            this.numberOfTernaAgentsTextBox.Location = new System.Drawing.Point(322, 57);
             this.numberOfTernaAgentsTextBox.Name = "numberOfTernaAgentsTextBox";
             this.numberOfTernaAgentsTextBox.Size = new System.Drawing.Size(50, 20);
             this.numberOfTernaAgentsTextBox.TabIndex = 1;
@@ -391,7 +393,7 @@
             // 
             // numberOfRandomAgentsTextbox
             // 
-            this.numberOfRandomAgentsTextbox.Location = new System.Drawing.Point(294, 31);
+            this.numberOfRandomAgentsTextbox.Location = new System.Drawing.Point(322, 31);
             this.numberOfRandomAgentsTextbox.Name = "numberOfRandomAgentsTextbox";
             this.numberOfRandomAgentsTextbox.Size = new System.Drawing.Size(50, 20);
             this.numberOfRandomAgentsTextbox.TabIndex = 37;
@@ -420,26 +422,46 @@
             this.label21.AutoSize = true;
             this.label21.Location = new System.Drawing.Point(236, 86);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(55, 13);
+            this.label21.Size = new System.Drawing.Size(75, 13);
             this.label21.TabIndex = 41;
-            this.label21.Text = "Intelligent:";
+            this.label21.Text = "Risk Avoiding:";
             // 
-            // numberOfIntelligentAgentTextbox
+            // numberOfRiskAvoidingAgentTextbox
             // 
-            this.numberOfIntelligentAgentTextbox.Enabled = false;
-            this.numberOfIntelligentAgentTextbox.Location = new System.Drawing.Point(294, 83);
-            this.numberOfIntelligentAgentTextbox.Name = "numberOfIntelligentAgentTextbox";
-            this.numberOfIntelligentAgentTextbox.Size = new System.Drawing.Size(50, 20);
-            this.numberOfIntelligentAgentTextbox.TabIndex = 40;
-            this.numberOfIntelligentAgentTextbox.Text = "0";
+            this.numberOfRiskAvoidingAgentTextbox.Location = new System.Drawing.Point(322, 83);
+            this.numberOfRiskAvoidingAgentTextbox.Name = "numberOfRiskAvoidingAgentTextbox";
+            this.numberOfRiskAvoidingAgentTextbox.Size = new System.Drawing.Size(50, 20);
+            this.numberOfRiskAvoidingAgentTextbox.TabIndex = 40;
+            this.numberOfRiskAvoidingAgentTextbox.Text = "0";
+            this.numberOfRiskAvoidingAgentTextbox.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(236, 110);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(73, 13);
+            this.label22.TabIndex = 43;
+            this.label22.Text = "Risk Seeking:";
+            // 
+            // numberOfRiskSeekingAgentTextbox
+            // 
+            this.numberOfRiskSeekingAgentTextbox.Location = new System.Drawing.Point(322, 107);
+            this.numberOfRiskSeekingAgentTextbox.Name = "numberOfRiskSeekingAgentTextbox";
+            this.numberOfRiskSeekingAgentTextbox.Size = new System.Drawing.Size(50, 20);
+            this.numberOfRiskSeekingAgentTextbox.TabIndex = 42;
+            this.numberOfRiskSeekingAgentTextbox.Text = "0";
+            this.numberOfRiskSeekingAgentTextbox.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // AgentSettingsDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(568, 373);
+            this.Controls.Add(this.label22);
+            this.Controls.Add(this.numberOfRiskSeekingAgentTextbox);
             this.Controls.Add(this.label21);
-            this.Controls.Add(this.numberOfIntelligentAgentTextbox);
+            this.Controls.Add(this.numberOfRiskAvoidingAgentTextbox);
             this.Controls.Add(this.label20);
             this.Controls.Add(this.label19);
             this.Controls.Add(this.numberOfRandomAgentsTextbox);
@@ -530,6 +552,8 @@
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.TextBox numberOfIntelligentAgentTextbox;
+        private System.Windows.Forms.TextBox numberOfRiskAvoidingAgentTextbox;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.TextBox numberOfRiskSeekingAgentTextbox;
     }
 }

@@ -23,8 +23,10 @@ namespace StockMarketSimulation
         { get{ return Int32.Parse(numberOfTernaAgentsTextBox.Text); } }
         public int NumberOfRandomAgents
         { get { return Int32.Parse(numberOfRandomAgentsTextbox.Text); } }
-        public int NumberOfIntelligentAgents
-        { get { return Int32.Parse(numberOfIntelligentAgentTextbox.Text); } }
+        public int NumberOfRiskAvoidingAgents
+        { get { return Int32.Parse(numberOfRiskAvoidingAgentTextbox.Text); } }
+        public int NumberOfRiskSeekingAgents
+        { get { return Int32.Parse(numberOfRiskSeekingAgentTextbox.Text); } }
         public int MaxOrders
         { get{ return Int32.Parse(maxOrdersTextBox.Text); } }
         public int StopLoss
@@ -58,6 +60,12 @@ namespace StockMarketSimulation
         {
             info = new CultureInfo("en-US");
             InitializeComponent();
+        }
+
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
         }
 
     }

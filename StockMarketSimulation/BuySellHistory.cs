@@ -40,6 +40,8 @@ namespace StockMarketSimulation
                 shares = "";
                 if (agent.GetType() == typeof(RandomAgent)) type = "random";
                 else if (agent.GetType() == typeof(TernaAgent)) type = "terna";
+                else if (agent.GetType() == typeof(RiskSeekingAgent)) type = "Risk Seeking";
+                else if (agent.GetType() == typeof(RiskAvoidingAgent)) type = "Risk Avoiding";
                 inventory = agent.getStockInventory();
                 for (int i = 0; i < inventory.Count; i++)
                 {

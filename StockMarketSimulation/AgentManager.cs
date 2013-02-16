@@ -26,7 +26,7 @@ namespace StockMarketSimulation
                     Order orderBeforeOpening = AgentList.ElementAt(j).actBeforeOpening(currentStock);
                     Order orderAtMarket = AgentList.ElementAt(j).act(currentStock);
                     if (orderBeforeOpening.OrderAgentPriceOfOrder != 0 && orderBeforeOpening.OrderAgentSizeOrder > 0) this.dailyOrders.Add(orderBeforeOpening);
-                    if (orderAtMarket.OrderAgentPriceOfOrder != 0 && orderBeforeOpening.OrderAgentSizeOrder > 0) this.dailyOrders.Add(orderAtMarket);
+                    if (orderAtMarket.OrderAgentPriceOfOrder != 0 && orderAtMarket.OrderAgentSizeOrder > 0) this.dailyOrders.Add(orderAtMarket);
 
                 }
                 currentStock.stockPriceBook.addDailyOrders(dailyOrders);
@@ -44,12 +44,13 @@ namespace StockMarketSimulation
 
         private void createAgents(DefaultValues dv)
         {
-            int agentNumber = dv.ternaAgentNumber + dv.randomAgentNumber + dv.intelligentAgentNumber;
+            int agentNumber = dv.ternaAgentNumber + dv.randomAgentNumber + dv.rsAgentNumber + dv.raAgentNumber;
             for (int i = 0; i < agentNumber; i++)
             {
                 if (i < dv.randomAgentNumber) AgentList.Add(new RandomAgent(i, dv));
                 else if (i < dv.randomAgentNumber+dv.ternaAgentNumber) AgentList.Add(new TernaAgent(i, dv));
-                //else AgentList.Add(new IntelligentAgent(i, dv));
+                else if (i < dv.randomAgentNumber+dv.ternaAgentNumber+dv.rsAgentNumber) AgentList.Add(new RiskSeekingAgent(i, dv));
+                else if (i < dv.randomAgentNumber + dv.ternaAgentNumber + dv.rsAgentNumber + dv.raAgentNumber) AgentList.Add(new RiskAvoidingAgent(i, dv));
             }
 
         }

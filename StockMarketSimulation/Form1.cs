@@ -150,7 +150,7 @@ namespace StockMarketSimulation
             
             if (result == DialogResult.OK)
             {
-                agentValues = new DefaultValues(dialog.EpochNumber, dialog.NumberOfTernaAgents, dialog.NumberOfRandomAgents, dialog.NumberOfIntelligentAgents, dialog.NumberOfStocks, dialog.Budget, dialog.MaxOrders, dialog.StopLoss, (float) dialog.ProbOfImitatingMarket,
+                agentValues = new DefaultValues(dialog.EpochNumber, dialog.NumberOfTernaAgents, dialog.NumberOfRandomAgents, dialog.NumberOfRiskSeekingAgents, dialog.NumberOfRiskAvoidingAgents, dialog.NumberOfStocks, dialog.Budget, dialog.MaxOrders, dialog.StopLoss, (float) dialog.ProbOfImitatingMarket,
                                                 (float)dialog.ProbOfLocalImitation, (float) dialog.AsymmetricBuySellProb, (float)dialog.ProbBeforeOpening,
                                                 (float) dialog.MinCorrection, (float)dialog.MaxCorrection, (float)dialog.FloorPrice, (float)dialog.AgentProbActBelowFloorPrice, dialog.MeanPriceHistoryLength,
                                                 dialog.LocalHistoryLength, (float) dialog.AgentProbAdoptStopLoss, (float)dialog.MaxLossRate);

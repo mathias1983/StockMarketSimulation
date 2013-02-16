@@ -25,6 +25,28 @@ namespace StockMarketSimulation
         public virtual Order act(Stock currentStock) { return new Order(); }
         public virtual Order actBeforeOpening(Stock currentStock) { return new Order(); }
 
+        protected void account(ref Order tempOrder, ref Stock currentStock, double tempBudget)
+        {
+            //buy
+            if (tempOrder.OrderAgentPriceOfOrder > 0)
+            {
+                while (!isBudgetHighEnough(tempOrder, tempBudget) && tempOrder.OrderAgentSizeOrder > 0)
+                    tempOrder.OrderAgentSizeOrder--;
+                addToOwnedStocks(currentStock, tempOrder.OrderAgentSizeOrder);
+            }
+            //sell
+            else if (tempOrder.OrderAgentPriceOfOrder < 0)
+            {
+                while (!ownsEnoughStocks(Convert.ToInt32(currentStock.Name), tempOrder.OrderAgentSizeOrder) && tempOrder.OrderAgentSizeOrder > 0)
+                {
+                    tempOrder.OrderAgentSizeOrder--;
+                }
+                removeFromOwnedStocks(currentStock, tempOrder.OrderAgentSizeOrder);
+            }
+
+            this.budget -= tempOrder.OrderAgentSizeOrder * tempOrder.OrderAgentPriceOfOrder;
+        }
+
         protected void account(ref Order tempOrder, ref Stock currentStock)
         {
             //buy
@@ -49,6 +71,11 @@ namespace StockMarketSimulation
         protected bool isBudgetHighEnough(Order currentOrder)
         {
             return this.budget - currentOrder.OrderAgentSizeOrder * currentOrder.OrderAgentPriceOfOrder > 0;
+        }
+
+        protected bool isBudgetHighEnough(Order currentOrder, double tempBudget)
+        {
+            return tempBudget - currentOrder.OrderAgentSizeOrder * currentOrder.OrderAgentPriceOfOrder > 0;
         }
 
         protected bool ownsEnoughStocks(int stocknumber, int amount)

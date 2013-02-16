@@ -7,31 +7,31 @@ namespace StockMarketSimulation
 {
     public class DefaultValues
     {
-        public int stopAtEpochNumber = 2000;
+        public int stopAtEpochNumber = 365;
 
-        public int ternaAgentNumber = 50;
-        public int randomAgentNumber = 50;
-        public int raAgentNumber = 20;
-        public int rsAgentNumber = 20;
+        public int ternaAgentNumber = 30;
+        public int randomAgentNumber = 30;
+        public int raAgentNumber = 10;
+        public int rsAgentNumber = 10;
 
         public int NumberOfAllAgents
         { get { return ternaAgentNumber + randomAgentNumber + raAgentNumber + rsAgentNumber; } }
 
         public int stockNumber = 5;
-        public int budget = 200000;
-        public int maxOrderNumber = 1;
+        public int budget = 10000;
+        public int maxOrderNumber = 10;
         public int stopLossInterval = 1;
 
-        public float probOfImitatingTheMarket = 0.0F;
-        public float probOfLocalImitation = 0.0F;
+        public float probOfImitatingTheMarket = 0.3F;
+        public float probOfLocalImitation = 0.2F;
         public float asymmetricBuySellProb = 0.9F;
         public float agentProbToActBeforeOpening = 0.05F;
-        public float minCorrectingCoefficient = 0.95F;
-        public float maxCorrectingCoefficient = 1.051F;
+        public float minCorrectingCoefficient = 0.9F;
+        public float maxCorrectingCoefficient = 1.12F;
         public float floorP = 1F;
-        public float agentProbToActBelowFloorPrice = 0.0F;
+        public float agentProbToActBelowFloorPrice = 0.2F;
 
-        public int meanPriceHistoryLength = 2;
+        public int meanPriceHistoryLength = 10;
         public int localHistoryLength = 20;
         public float agentProbToAdoptStopLoss = 0.5F;
         public float maxLossRate = 0.0F;

@@ -49,6 +49,7 @@ namespace StockMarketSimulation
 
             double r = 0;
 
+            // calculating MA
             for (int i = 0; i < tempHistory; i++)
             {
                 r += LastPrice - lastPrices.ElementAt(i);
@@ -72,10 +73,13 @@ namespace StockMarketSimulation
                 tempOrder.OrderAgentSizeOrder = random.Next(1, Convert.ToInt32((maxOrderNumber + 1) * maxInvest));
                 tempBudget = this.budget * maxInvest;
             }
+            
+                // if the price is going straight down, dont buy anything
             else if (r < -0.3)
             {
                 tempOrder.OrderAgentSizeOrder = 0;
             }
+                // if the price is rising by a big amount, buy as much as possible
             else if (r > 0.3)
             {
                 tempOrder.OrderAgentSizeOrder = maxOrderNumber;

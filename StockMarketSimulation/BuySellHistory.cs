@@ -38,8 +38,8 @@ namespace StockMarketSimulation
             foreach (Agent agent in Agents)
             {
                 shares = "";
-                if (agent.GetType() == typeof(RandomAgent)) type = "random";
-                else if (agent.GetType() == typeof(TernaAgent)) type = "terna";
+                if (agent.GetType() == typeof(RandomAgent)) type = "Random";
+                else if (agent.GetType() == typeof(TernaAgent)) type = "Terna";
                 else if (agent.GetType() == typeof(RiskSeekingAgent)) type = "Risk Seeking";
                 else if (agent.GetType() == typeof(RiskAvoidingAgent)) type = "Risk Avoiding";
                 inventory = agent.getStockInventory();
@@ -77,9 +77,10 @@ namespace StockMarketSimulation
             float[] money = agent.getBudgetHistory().ToArray();
             Series serie = new Series();
             serie.ChartType = SeriesChartType.Column;
-            string type = "intelligent";
+            string type = "risk-avoiding";
             if (typeof(TernaAgent) == agent.GetType()) type = "terna";
             else if (typeof(RandomAgent) == agent.GetType()) type = "random";
+            else if (typeof(RiskSeekingAgent) == agent.GetType()) type = "ristk-seeking";
             serie.Name = agent.getAgentNumber().ToString() + "("+type+")";
             serie.Color = Form1.getRandomColor();
             serie.XValueType = ChartValueType.Int32;
